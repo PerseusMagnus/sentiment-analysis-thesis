@@ -12,7 +12,7 @@ products= []
 
 
 
-shopee = "https://shopee.ph/Face-mask-holder-Lanyard-for-face-mask-strap-chain-necklace-Pearl-Eyeglasses-Lanyards-Neck-Hanging-R-i.423714846.9664845009?sp_atk=c6a4b0cc-5df0-4fdc-8fe3-4e26169042d8"
+shopee = "https://shopee.ph/2020-Best-selling-Korean-ladies-white-shoes-i.174274877.7867509069?sp_atk=41d912c2-6a7a-46cb-8eda-2a1025d49c4c"
 
 rating = []
 
@@ -42,7 +42,7 @@ while True:
     if int(solid_button.text)!= i:
         break;
         
-    right_button = driver.find_element_by_xpath('/html/body/div[1]/div/div[2]/div[2]/div/div[3]/div[3]/div[1]/div[2]/div/div[3]/div[2]/button[8]')
+    right_button = driver.find_element_by_class_name('shopee-icon-button--right ')
     if right_button:
         while True: 
                 i = i+1
