@@ -1,5 +1,9 @@
 $(document).ready(function(){
-  $("#sentimentArea").emojioneArea();
+  $("#sentimentArea").emojioneArea(
+    {
+      pickerPosition : "bottom"
+    }
+  );
 })
 
 $('.interactive-menu-button a').click(function() {
