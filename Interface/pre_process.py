@@ -20,10 +20,9 @@ def lowerStemmer(tokens):
 # GET AND SAVE THE STOPWORDS INTO LIST
 stoplist = ""
 
-with open('C:/Users/ditab/Documents/CNN dataset/stopwords/stopwords.txt',encoding="utf-8") as f:
+with open('C:\Users\renze\OneDrive\Documents\School\College\Acads\Thesis Development\sentiment-analysis-thesis\Interface\pre_process.py',encoding="utf-8") as f:
   contents = f.read()
   stoplist = stoplist + contents
-   
 stoplist = word_tokenize(stoplist)
 
 # FUNCTION TO REMOVE STOPWORDS

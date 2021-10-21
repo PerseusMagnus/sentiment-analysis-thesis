@@ -1,3 +1,6 @@
+from nltk import word_tokenize, WordNetLemmatizer
+import nltk
+nltk.download('punkt')
 from flask import Flask, render_template, request
 import taglish_sentiment_analysis_cnn as model
 
