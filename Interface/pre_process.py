@@ -20,7 +20,7 @@ def lowerStemmer(tokens):
 # GET AND SAVE THE STOPWORDS INTO LIST
 stoplist = ""
 
-with open('C:/Users/ditab/Documents/CNN dataset/stopwords/stopwords.txt',encoding="utf-8") as f:
+with open('C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/stopwords/stopwords.txt',encoding="utf-8") as f:
   contents = f.read()
   stoplist = stoplist + contents
    
