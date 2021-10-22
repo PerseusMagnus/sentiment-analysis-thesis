@@ -23,7 +23,6 @@ stoplist = ""
 with open('C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/stopwords/stopwords.txt',encoding="utf-8") as f:
   contents = f.read()
   stoplist = stoplist + contents
-   
 stoplist = word_tokenize(stoplist)
 
 # FUNCTION TO REMOVE STOPWORDS

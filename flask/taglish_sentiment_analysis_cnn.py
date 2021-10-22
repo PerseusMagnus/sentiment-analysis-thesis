@@ -11,12 +11,11 @@ EMBEDDING_DIM = 300
 TRAINING_VOCAB = 2455
 
 #LOAD MODEL
-taglish_model = keras.models.load_model('C:/Users/ditab/Documents/CNN dataset/model/tag-lish_cnn.h5')
+taglish_model = keras.models.load_model('C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
 
 #LOAD TOKENIZER
-with open('C:/Users/ditab/Documents/CNN dataset/toke/tokenizer.pickle', 'rb') as handle:
+with open('C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/model/tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
-
 
 # CONVERT LIST TO STRING
 def listToString(s): 
