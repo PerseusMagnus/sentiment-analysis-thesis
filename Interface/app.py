@@ -15,11 +15,15 @@ def main():
 @app.route('/predict',methods=['POST','GET'])
 
 def predict():
-    if request.method == "POST":
+    
+    input = request.form.get("sentimentArea")
+
+    if request.method == "POST" and input:
         # getting input with name = fname in HTML form
-        input = request.form.get("sentimentArea")
         sentiment = model.predict_sentiment(input)
 
+    return jsonify( {'sentiment' : sentiment})
+    '''
     if(sentiment==2):
         return render_template("index.html",sentiment='Predicted Sentiment:  Positive')
 
@@ -28,7 +32,7 @@ def predict():
 
     if(sentiment==0):
         return render_template("index.html",sentiment='Predicted Sentiment:  Negative')
-
+    '''
 
 if __name__ == '__main__':
     app.run(debug=True)
