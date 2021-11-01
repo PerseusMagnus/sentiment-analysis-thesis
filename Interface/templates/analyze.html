@@ -95,13 +95,15 @@
           <div class="col-6">
             <h3>INPUT:</h3> <br>
             
-            <form action='/predict' method="post">
+            <form action='/predict_multiple' method="post">
               <div class="col-12">
-                  <input type="file" id="myFile" name="filename">
+          <form method="POST" action="" enctype="multipart/form-data">
+                  <input type="file" id="file" name="file">
               </div>
               <br><br>
               <div class = "col-6">
                 <button class="analyze-btn">Analyze</button>
+           </form>
                 <a></a>
               </div>
             </form>
