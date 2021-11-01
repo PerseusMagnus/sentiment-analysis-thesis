@@ -5,6 +5,24 @@ import os
 import collections
 import re
 import string
+from emoji import UNICODE_EMOJI
+
+# search your emoji
+def is_emoji(s):
+    return s in UNICODE_EMOJI['en']
+
+#add space to the emoji that has no whitespace
+def addSpaceEmoji(input):
+    
+  sentence = ""
+  for x in range(len(input)):
+      
+    if(is_emoji(input[x])):
+      sentence = sentence + ' ' + input[x]
+    else:
+      sentence = sentence + input[x]
+
+  return sentence
 
 # REMOVE PUNCTUATION
 def remove_punct(text):
@@ -28,4 +46,6 @@ stoplist = word_tokenize(stoplist)
 # FUNCTION TO REMOVE STOPWORDS
 def removeStopWords(tokens): 
     return [word for word in tokens if word not in stoplist]
+
+
 

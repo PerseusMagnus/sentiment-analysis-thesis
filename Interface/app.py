@@ -1,6 +1,5 @@
 from nltk import word_tokenize, WordNetLemmatizer
 import nltk
-nltk.download('punkt')
 from flask import Flask, render_template, request
 import taglish_sentiment_analysis_cnn as model
 
@@ -21,9 +20,9 @@ def predict():
     if request.method == "POST" and input:
         # getting input with name = fname in HTML form
         sentiment = model.predict_sentiment(input)
-
-    return jsonify( {'sentiment' : sentiment})
-    '''
+    else:
+        return render_template("index.html",sentiment='Predicted Sentiment:  Positive')
+    
     if(sentiment==2):
         return render_template("index.html",sentiment='Predicted Sentiment:  Positive')
 
@@ -32,7 +31,7 @@ def predict():
 
     if(sentiment==0):
         return render_template("index.html",sentiment='Predicted Sentiment:  Negative')
-    '''
+    
 
 if __name__ == '__main__':
     app.run(debug=True)
