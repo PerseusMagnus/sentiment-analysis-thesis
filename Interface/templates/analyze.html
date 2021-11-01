@@ -95,22 +95,24 @@
           <div class="col-6">
             <h3>INPUT:</h3> <br>
             
-            <form action='/predict' method="post">
+            
               <div class="col-12">
-                  <input type="file" id="myFile" name="filename">
+          <form method="POST" action="/predict_multiple" enctype="multipart/form-data">
+                  <input type="file" id="file" name="file">
               </div>
               <br><br>
               <div class = "col-6">
-                <button class="analyze-btn">Analyze</button>
+                <p><input type="submit" value="Submit"></p>
+           </form>
                 <a></a>
               </div>
-            </form>
+            
 
           </div>
           <div class="col-6">
             <h3>RESULT SUMMARY:</h3>
             <div class="col-12">
-              <textarea readonly></textarea>
+              <textarea readonly> Positive: {{positive}}  Negative: {{negative}}  Neutral: {{neutral}}</textarea>
             </div>
           </div>
         </div>
