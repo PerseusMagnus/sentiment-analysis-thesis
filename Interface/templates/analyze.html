@@ -42,57 +42,81 @@
             </li>
             <li class="nav-item">
               <!-- Nav Link -->
-              <a class="nav-link"  href="#contact-us">Contact Us</a>
+              <a class="nav-link" data-scroll href="#contact-us">Contact Us</a>
             </li>
           </ul>
-          <a href="../templates/analyze.html" class="contact-btn form-inline my-2 my-lg-0" >
-            <button >Analyze Sentiments</button>
-          </a>
+          <form  href="#a" class="contact-btn form-inline my-2 my-lg-0">
+            <button>Analyze Sentiments</button>
+          </form>
         </div>
       </nav>
     </div>
-    <!-- HERO SECTION -->    
-    <div class="container-fluid hero">
-      <img src="../static/images/hero.svg" alt="">
-      <div class="container">
-        <!-- Hero Title -->
-        <h1>Project<br>SAWE</h1>
-        <!-- Hero Title Info -->
-        <p>Project SAWE or Project Sentiment Analysis with Emoji<br> is a current thesis development tool in the <br>College of Computer and Information Sciences</p>
-        <div class="hero-btns">
-          <!-- Hero Btn First -->
-          <a data-scroll href="#get-started">Get Started</a>
-          <!-- Hero Btn Second -->
-          <a href="../templates/analyze.html">Analyze Sentiments</a>
-        </div>
-      </div>
-    </div>
-  </header>
 
-  <!-- ABOUT SECTION -->
-  <section class="about" id="get-started">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 col-sm-12 col-lg-6">
-          
-          <img src="../static/images/aboutimg.svg" alt="">
+
+  <!-- BLOG SECTION -->
+  <section id="analyze" class="blog" >
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <h2>ANALYZE YOUR SENTIMENTS</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <h3>Single Sentiment</h3>
+          </div>
+          <div class="col-6">
+            <h3>INPUT:</h3>
+            
+            <form action='/predict' method="post">
+              <div class="col-12">
+                <textarea  id="sentimentArea" name="sentimentArea" placeholder="Input your sentiment here..."></textarea>
+              </div>
+              <br><br>
+              <div class = "col-6">
+                <button class="analyze-btn">Analyze</button>
+                <a></a>
+              </div>
+            </form>
+
+          </div>
+          <div class="col-6">
+            <h3>RESULT:</h3>
+            <h4>{{sentiment}}</h4>
+          </div>
         </div>
         
-        <div class="col-12 col-sm-12 col-lg-6">
-          <h5>Getting Started</h5>
-          <h2>Start Project SAWE</h2>
-          <!-- Replace About Us Text Under -->
-          <p>To Start Project SAWE, you need to input your sentiments in the languages of english, tagalog or mix. This project can also analyze sentiments with emoji.
-            Project SAWE will determine whether your sentiment is positive, neutral or negative.  </p> <br>
-            <div class="hero-btns">
-              <!-- Hero Btn First -->
-              <a data-scroll href="#get-started">More Info</a>
-              <a></a>
+        <br><br><br>
+        <div class="row">
+          <div class="col-12">
+            <h3>Multiple Sentiments</h3>
+          </div>
+          <div class="col-6">
+            <h3>INPUT:</h3> <br>
+            
+            <form action='/predict' method="post">
+              <div class="col-12">
+                  <input type="file" id="myFile" name="filename">
+              </div>
+              <br><br>
+              <div class = "col-6">
+                <button class="analyze-btn">Analyze</button>
+                <a></a>
+              </div>
+            </form>
+
+          </div>
+          <div class="col-6">
+            <h3>RESULT SUMMARY:</h3>
+            <div class="col-12">
+              <textarea readonly></textarea>
             </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </section>  
 
   <!-- FOOTER SECTION -->
   <footer>
