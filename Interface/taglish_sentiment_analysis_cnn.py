@@ -32,6 +32,7 @@ def predict_sentiment(input):
   
   #PREPROCESSING
   clean = scan.remove_punct(input)
+  clean = scan.addSpaceEmoji(clean)
   clean = word_tokenize(clean)
   clean = scan.lowerStemmer(clean)
   clean = scan.removeStopWords(clean)
