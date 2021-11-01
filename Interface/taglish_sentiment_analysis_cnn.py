@@ -11,10 +11,10 @@ EMBEDDING_DIM = 300
 TRAINING_VOCAB = 2455
 
 #LOAD MODEL
-taglish_model = keras.models.load_model('C:/Users/renze/OneDrive/Documents/School/College/Acads/Thesis Development/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
+taglish_model = keras.models.load_model('C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
 
 #LOAD TOKENIZER
-with open('C:/Users/renze/OneDrive/Documents/School/College/Acads/Thesis Development/sentiment-analysis-thesis/Interface/static/model/tokenizer.pickle', 'rb') as handle:
+with open('C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/model/tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 
