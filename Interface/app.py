@@ -76,7 +76,6 @@ def uploadFiles():
         data.columns = ['text']
 
         sentiment_prediction = []
-        input_padding = []
 
         for text in data['text']:
             sentiment_prediction.append(model.predict_sentiment(text))

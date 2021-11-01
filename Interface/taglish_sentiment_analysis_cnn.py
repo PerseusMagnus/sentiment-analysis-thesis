@@ -10,6 +10,10 @@ MAX_SEQUENCE_LENGTH = 50
 EMBEDDING_DIM = 300
 TRAINING_VOCAB = 2455
 
+# search your emoji
+def is_emoji(s):
+    return s in UNICODE_EMOJI['en']
+
 #LOAD MODEL
 taglish_model = keras.models.load_model('C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
 
@@ -34,9 +38,21 @@ def predict_sentiment(input):
   clean = scan.remove_punct(input)
   clean = scan.addSpaceEmoji(clean)
   clean = word_tokenize(clean)
+
+  '''
+  #check if emoji is present 
+  emoji = 0
+
+  for x in range(len(clean)):
+      if(is_emoji(clean[x])):
+        emoji = 1
+        break
+      if(x == ( len(clean) - 1)):
+        emoji = 0
+  '''
+
   clean = scan.lowerStemmer(clean)
   clean = scan.removeStopWords(clean)
-
   input = listToString(clean)
 
 
@@ -57,3 +73,4 @@ def predict_sentiment(input):
 
 
   return input_prediction_labels
+  #,emoji
