@@ -779,3 +779,7 @@ footer h6 {
   -moz-box-shadow: 0px 4px 5px 0px rgba(255,57,70,0.15);
   box-shadow: 0px 4px 5px 0px rgba(255,57,70,0.15);
 }
+
+.left-align{
+  margin-left:66%;
+}
