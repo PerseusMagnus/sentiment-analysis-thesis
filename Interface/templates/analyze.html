@@ -92,19 +92,19 @@
             <h3>Multiple Sentiments</h3>
           </div>
           <div class="col-6">
-            <h3>INPUT:</h3> <br>
+            <h3>INPUT:</h3> 
               <div class="col-12">
           <form method="POST" action="/predict_multiple" enctype="multipart/form-data">
                   <input type="file" id="file" name="file">
               </div>
               <br>
-              <div class = "col-5">
+              <div class = "col-12 lg-2">
                 <button onclick = "removeDisable()" id = "analyze-btn" class="analyze-btn" type="submit" value="Submit">Multiple Analyze</button>
            </form>
-           <br>
+           <br> <br>
                 <a></a>
                 <form action='/download' method="post">        
-                  &emsp;<button id='download' class="analyze-btn" disabled>Download Labelled CSV</button>               
+                <button id='download' class="analyze-btn" disabled> Download CSV &nbsp</button>               
                 </form>
               </div>
             
