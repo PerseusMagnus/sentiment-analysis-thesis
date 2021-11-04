@@ -102,7 +102,7 @@
               </div>
               <br><br>
               <div class = "col-6">
-                <p><input type="submit" value="Submit"></p>
+                <p><button onclick = "removeDisable()" id = "analyze-btn" class="analyze-btn" type="submit" value="Submit">Multiple Analyze</p>
            </form>
                 <a></a>
               </div>
@@ -112,13 +112,19 @@
           <div class="col-6">
             <h3>RESULT SUMMARY:</h3>
             <div class="col-12">
-              <textarea readonly> Positive: {{positive}}  Negative: {{negative}}  Neutral: {{neutral}}</textarea>
+              <textarea readonly> Positive: {{positive}}  Negative: {{negative}}  Neutral: {{neutral}}
+                  With emoji: {{with_emoji}}    W/o emoji: {{wo_emoji}}
+              </textarea>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>  
+
+  <form action='/download' method="post">        
+    <button id='download' class="analyze-btn" disabled>Download CSV</button>               
+  </form>
 
   <!-- FOOTER SECTION -->
   <footer>
@@ -146,6 +152,7 @@
     crossorigin="anonymous">
   </script>
   <script src="../static/js/jquery.js"></script>
+  <script src="../static/js/script.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <script src="../static/js/bootstrap.min.js"></script>
   <script src="../static/js/slick.min.js"></script>
