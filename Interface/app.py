@@ -64,6 +64,8 @@ def predict():
 
 def uploadFiles():
     global input_with_polarity
+    input_with_polarity = []
+
     # get the uploaded file
     uploaded_file = request.files['file']
 
@@ -119,7 +121,7 @@ def uploadFiles():
         print('with emoji: ',emoji,'   without emoji: ',no_emoji)
 
     #start ako dito 
-        header = ['Text', 'Polarity']
+    header = ['Text', 'Polarity']
 
     si = StringIO()
         
@@ -138,8 +140,6 @@ def uploadFiles():
     output.headers["Content-Disposition"] = "attachment; filename=export.csv"
     output.headers["Content-type"] = "text/csv"
         
-    return output
-    
     return render_template("analyze.html",positive = pos,negative=neg,neutral=neu,with_emoji=emoji,wo_emoji=no_emoji)
     
 

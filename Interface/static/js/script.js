@@ -1,19 +1,22 @@
+let showDownload = window.localStorage.getItem('show');
 
-console.log("hello")
+document.getElementById("loading").style.display = "none";
 
-/*
-$( "#analyze-btn" ).click(function() {
-
-    $("#download")
-
-});
-*/
+if(showDownload !='1'){
+    document.getElementById("download").style.display = "none";
+}
 
 function removeDisable(){
-    document.getElementById("download").disabled = false;
-    console.log("hello world")
 
-    //$('#download').attr('disabled',false); // removing disabled in this class
-   // document.getElementById('download').removeAttr('disabled');
+    window.localStorage.setItem("show", "1");
+
+
+    document.getElementById("download").disabled = false;
+
+    document.getElementById("loading").style.display = "block";
+
+    document.getElementById("download").style.display = "block";
+
+
 }
 
