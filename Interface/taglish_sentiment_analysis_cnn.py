@@ -5,6 +5,8 @@ from keras.preprocessing.sequence import pad_sequences
 from keras.preprocessing.text import Tokenizer
 import numpy as np
 import pickle
+from emoji import UNICODE_EMOJI
+
 
 MAX_SEQUENCE_LENGTH = 50
 EMBEDDING_DIM = 300
@@ -39,7 +41,7 @@ def predict_sentiment(input):
   clean = scan.addSpaceEmoji(clean)
   clean = word_tokenize(clean)
 
-  '''
+  
   #check if emoji is present 
   emoji = 0
 
@@ -49,7 +51,7 @@ def predict_sentiment(input):
         break
       if(x == ( len(clean) - 1)):
         emoji = 0
-  '''
+  
 
   clean = scan.lowerStemmer(clean)
   clean = scan.removeStopWords(clean)
@@ -62,7 +64,8 @@ def predict_sentiment(input):
   #CONVERT INPUT INTO PADDING
   clean_sequences  = tokenizer.texts_to_sequences(test)
   clean_input = pad_sequences(clean_sequences, maxlen=MAX_SEQUENCE_LENGTH)
-
+  print(test)
+  print(clean_input)
   #model prediction
 
   input_predictions = taglish_model.predict(clean_input, batch_size=1024, verbose=1)
@@ -72,5 +75,5 @@ def predict_sentiment(input):
   input_prediction_labels = labels[np.argmax(input_predictions)]
 
 
-  return input_prediction_labels
-  #,emoji
+  return input_prediction_labels,emoji
+  #emoji
