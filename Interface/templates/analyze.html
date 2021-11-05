@@ -92,19 +92,19 @@
             <h3>Multiple Sentiments</h3>
           </div>
           <div class="col-6">
-            <h3>INPUT:</h3> <br>
+            <h3>INPUT:</h3> 
               <div class="col-12">
           <form method="POST" action="/predict_multiple" enctype="multipart/form-data">
                   <input type="file" id="file" name="file">
               </div>
               <br>
-              <div class = "col-5">
+              <div class = "col-12 lg-2">
                 <button onclick = "removeDisable()" id = "analyze-btn" class="analyze-btn" type="submit" value="Submit">Multiple Analyze</button>
            </form>
-           <br>
+           <br> <br>
                 <a></a>
                 <form action='/download' method="post">        
-                  &emsp;<button id='download' class="analyze-btn">Download Labelled CSV</button>               
+                <button id='download' class="analyze-btn"> Download CSV &nbsp</button>               
                 </form>
               </div>
             
@@ -113,14 +113,24 @@
           <div class="col-6">
             <h3>RESULT SUMMARY:</h3>
             <div class=row>
-              <div class="col-6 col-lg-6">
-                <h4>Positive:</h4> <h5>{{positive}} </h5> 
-                <h4>Negative:</h4> <h5>{{negative}}</h5>   
-                <h4>Neutral:</h4><h5>{{neutral}}</h5>
+              <div class="col-2 col-lg-3">
+                <h5>Positive:</h5> <p>{{positive}} </p>
+                <h5>Negative:</h5> <p>{{negative}}</p> 
+                <h5>Neutral:</h5>  <p>{{neutral}}</p>
               </div>
-              <div class="col-6 col-lg-6">
-                <h4>With emoji:</h4><h5>{{with_emoji}}</h5>    
-                <h4>W/o emoji:</h4><h5>{{wo_emoji}}</h5>
+              <div class="col-2 col-lg-3">
+                <h5>With emoji:</h5> <p>{{with_emoji}}</p>    
+                <h5>W/o emoji:</h5>  <p>{{wo_emoji}}</p>
+              </div>
+              <div class="col-2 col-lg-3">
+                <h5>Positive w/ emoji:</h5> <p>{{positive_with_emoji}}</p>   
+                <h5>Neutral w/ emoji:</h5>  <p>{{neutral_with_emoji}}</p>  
+                <h5>Negative w/ emoji:</h5> <p>{{negative_with_emoji}}</p>  
+              </div>
+              <div class="col-2 col-lg-3">
+                <h5>Positive w/o emoji:</h5> <p>{{positive_no_emoji}}</p>    
+                <h5>Neutral w/o emoji:</h5>  <p>{{neutral_no_emoji}}</p>  
+                <h5>Negative w/o emoji:</h5> <p>{{negative_no_emoji}}</p> 
               </div>
             </div>
           </div>

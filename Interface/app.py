@@ -179,7 +179,11 @@ def uploadFiles():
     output.headers["Content-Disposition"] = "attachment; filename=export.csv"
     output.headers["Content-type"] = "text/csv"
         
-    return render_template("analyze.html",positive = pos,negative=neg,neutral=neu,with_emoji=emoji,wo_emoji=no_emoji)
+    return render_template("analyze.html",positive = pos, negative=neg,neutral=neu,
+    with_emoji=emoji,wo_emoji=no_emoji, positive_with_emoji = positive_with_emoji,
+    negative_with_emoji = negative_with_emoji, neutral_with_emoji = neutral_with_emoji,
+    positive_no_emoji = positive_no_emoji, neutral_no_emoji = neutral_no_emoji,
+    negative_no_emoji = negative_no_emoji)
     
 
 #download csv copy   
