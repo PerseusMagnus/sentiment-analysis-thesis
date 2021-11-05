@@ -34,20 +34,16 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <!-- Nav Link -->
-              <a class="nav-link" data-scroll href="#home">Home<span class="sr-only">(current)</span></a>
+              <a class="nav-link" data-scroll href="../templates/index.html">Home</a>
             </li>
             <li class="nav-item">
               <!-- Nav Link -->
-              <a class="nav-link" data-scroll href="#about-us">About Us</a>
-            </li>
-            <li class="nav-item">
-              <!-- Nav Link -->
-              <a class="nav-link"  href="#contact-us">Contact Us</a>
+              <a class="nav-link" data-scroll href="../templates/about_us.html">About Us</a>
             </li>
           </ul>
-          <a href="../analyze.html" class="contact-btn form-inline my-2 my-lg-0" >
+          <form action='/sentiment'> <a class="contact-btn form-inline my-2 my-lg-0" >
             <button >Analyze Sentiments</button>
-          </a>
+          </a></form>
         </div>
       </nav>
     </div>
@@ -63,9 +59,8 @@
           <!-- Hero Btn First -->
           <a data-scroll href="#get-started">Get Started</a>
           <!-- Hero Btn Second -->
-
           <form action='/sentiment'>
-            <button>Analyze Sentiments</button>
+            <button class="button-analyze">Analyze Sentiments</button>
           </form>
         </div>
       </div>
@@ -159,7 +154,6 @@
     </div>
   </section>  
   </body>
-
 
   <!-- FOOTER SECTION -->
   <footer>

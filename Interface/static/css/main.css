@@ -783,3 +783,17 @@ footer h6 {
 .left-align{
   margin-left:66%;
 }
+
+.button-analyze{
+  background-color: #fff;
+  border:none;
+  color: #314584;
+  margin-top:-20px;
+  font-size: 1.0rem;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  position: absolute;
+  left: 25%;
+  top: 110%;
+
+}
