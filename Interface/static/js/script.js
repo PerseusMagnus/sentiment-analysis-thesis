@@ -1,6 +1,6 @@
 let showDownload = window.localStorage.getItem('show');
 
-document.getElementById("loading").style.display = "none";
+//document.getElementById("loading").style.display = "none";
 
 if(showDownload !='1'){
     document.getElementById("download").style.display = "none";
@@ -13,7 +13,7 @@ function removeDisable(){
 
     document.getElementById("download").disabled = false;
 
-    document.getElementById("loading").style.display = "block";
+ //   document.getElementById("loading").style.display = "block";
 
     document.getElementById("download").style.display = "block";
 

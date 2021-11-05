@@ -45,7 +45,8 @@ def predict():
 
     if request.method == "POST":
         # getting input with name = fname in HTML form
-        sentiment = model.predict_sentiment(input)
+        sentiment = model.predict_single_sentiment(input)
+        print(sentiment)
     else:
         return render_template("analyze.html",sentiment='Input is Empty')
     
@@ -63,6 +64,19 @@ def predict():
 @app.route('/predict_multiple',methods=['POST','GET'])
 
 def uploadFiles():
+    #count sentiments with or without emoji
+    isEmoji = []
+
+    positive_with_emoji = 0
+    positive_no_emoji = 0
+
+    negative_with_emoji = 0
+    negative_no_emoji = 0
+
+    neutral_with_emoji = 0
+    neutral_no_emoji = 0
+
+    #global variable list for predicted polarity with emoji(True or False)
     global input_with_polarity
     input_with_polarity = []
 
@@ -72,6 +86,9 @@ def uploadFiles():
     print(uploaded_file.filename)
     
     if uploaded_file.filename != '':
+
+        
+
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename)
         # set the file path
         uploaded_file.save(file_path)
@@ -90,6 +107,8 @@ def uploadFiles():
             polarity = model.predict_sentiment(text)
             sentiment_prediction.append(polarity[0])
 
+            isEmoji.append(polarity[1])
+
             #count inputs with emoji and w/o emoji
             if(polarity[1]):
                 emoji += 1
@@ -102,8 +121,25 @@ def uploadFiles():
 
         #save the text and its respective polarity into list of list
         for n in range(len(data['text'])):
-            input_with_polarity.append([data['text'][n],sentiment_prediction[n]])
+            input_with_polarity.append([data['text'][n],sentiment_prediction[n],isEmoji[n]])
 
+            if(sentiment_prediction[n] == 0 ):
+                if(isEmoji[n] == 1):
+                    negative_with_emoji +=1
+                else:
+                    negative_no_emoji +=1
+
+            elif(sentiment_prediction[n] == 1 ):
+                if(isEmoji[n] == 1):
+                    neutral_with_emoji +=1
+                else:
+                    neutral_no_emoji +=1
+
+            elif(sentiment_prediction[n] == 2 ):
+                if(isEmoji[n] == 1):
+                    positive_with_emoji +=1
+                else:
+                    positive_no_emoji +=1
         
         pos = 0
         neg = 0
@@ -119,9 +155,12 @@ def uploadFiles():
         
         print('positive: ',pos,'  negative: ',neg,'  neutral: ',neu)
         print('with emoji: ',emoji,'   without emoji: ',no_emoji)
+        print('Positive with emoji:',positive_with_emoji,'  Positive w/o emoji: ',positive_no_emoji)
+        print('Negative with emoji:',negative_with_emoji,'  Negative w/o emoji: ',negative_no_emoji)
+        print('Neutral with emoji:',neutral_with_emoji,'  Neutral w/o emoji: ',neutral_no_emoji)
 
     #start ako dito 
-    header = ['Text', 'Polarity']
+    header = ['Text', 'Polarity','Emoji present']
 
     si = StringIO()
         

@@ -77,3 +77,33 @@ def predict_sentiment(input):
 
   return input_prediction_labels,emoji
   #emoji
+
+def predict_single_sentiment(input):
+      
+  #PREPROCESSING
+  clean = scan.remove_punct(input)
+  clean = scan.addSpaceEmoji(clean)
+  clean = word_tokenize(clean)
+  clean = scan.lowerStemmer(clean)
+  clean = scan.removeStopWords(clean)
+  input = listToString(clean)
+
+
+  test = [[]]
+  test[0] = clean
+
+  #CONVERT INPUT INTO PADDING
+  clean_sequences  = tokenizer.texts_to_sequences(test)
+  clean_input = pad_sequences(clean_sequences, maxlen=MAX_SEQUENCE_LENGTH)
+  print(test)
+  print(clean_input)
+  #model prediction
+
+  input_predictions = taglish_model.predict(clean_input, batch_size=1024, verbose=1)
+
+  labels = [2,0,1]
+
+  input_prediction_labels = labels[np.argmax(input_predictions)]
+
+
+  return input_prediction_labels
