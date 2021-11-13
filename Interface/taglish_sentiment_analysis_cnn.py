@@ -36,13 +36,20 @@ def listToString(s):
 
 def predict_sentiment(input):
   
-  #PREPROCESSING
-  clean = scan.remove_punct(input)
-  clean = scan.addSpaceEmoji(clean)
-  clean = word_tokenize(clean)
-
+  # PREPROCESSING
   
-  #check if emoji is present 
+  # Removing Punctuation
+  clean = scan.remove_punct(input)
+  print("\nRemoving Punctuation: \n",clean)
+  # Add space in emoji 
+  clean = scan.addSpaceEmoji(clean)
+  print("\nAdd space in emoji: \n",clean)
+  
+  # Tokenize input
+  clean = word_tokenize(clean)
+  print("\nTokenize input: \n",clean)
+  
+  # check if emoji is present 
   emoji = 0
 
   for x in range(len(clean)):
@@ -54,38 +61,63 @@ def predict_sentiment(input):
   
 
   clean = scan.lowerStemmer(clean)
+  # Remove stopwords
   clean = scan.removeStopWords(clean)
+  print("\nRemove stopwords: \n",clean)
+  
+  # Convert to strin again so that we can convert it int padding sequences
   input = listToString(clean)
-
 
   test = [[]]
   test[0] = clean
 
   #CONVERT INPUT INTO PADDING
   clean_sequences  = tokenizer.texts_to_sequences(test)
-  clean_input = pad_sequences(clean_sequences, maxlen=MAX_SEQUENCE_LENGTH)
-  print(test)
-  print(clean_input)
-  #model prediction
+  
+  if(len(clean_sequences[0]) == 0):
+    return 3,emoji
+  
+  else:        
+    clean_input = pad_sequences(clean_sequences, maxlen=MAX_SEQUENCE_LENGTH)
+    print("\nPadding sequences: \n",clean_input)
+        
+    #model prediction
+    input_predictions = taglish_model.predict(clean_input, batch_size=1024, verbose=1)
 
-  input_predictions = taglish_model.predict(clean_input, batch_size=1024, verbose=1)
+    #Tensor data computed by model
+    print("\nTensor data computed by model: \n",input_predictions)
 
-  labels = [2,0,1]
+    labels = [2,0,1]
 
-  input_prediction_labels = labels[np.argmax(input_predictions)]
+    # Convert tensor into its highest probability in labels
+    input_prediction_labels = labels[np.argmax(input_predictions)]
 
+    print("\nConvert tensor into sentiments: \n",input_prediction_labels)
 
   return input_prediction_labels,emoji
-  #emoji
+  
 
 def predict_single_sentiment(input):
       
   #PREPROCESSING
+  
+  # Removing Punctuation
   clean = scan.remove_punct(input)
+  print("\nRemoving Punctuation: \n",clean)
+  # Add space in emoji 
   clean = scan.addSpaceEmoji(clean)
+  print("\nAdd space in emoji: \n",clean)
+  
+  # Tokenize input
   clean = word_tokenize(clean)
+  print("\nTokenize input: \n",clean)
+  
   clean = scan.lowerStemmer(clean)
+  # Remove stopwords
   clean = scan.removeStopWords(clean)
+  print("\nRemove stopwords: \n",clean)
+  
+  # Convert to strin again so that we can convert it int padding sequences
   input = listToString(clean)
 
 
@@ -94,16 +126,28 @@ def predict_single_sentiment(input):
 
   #CONVERT INPUT INTO PADDING
   clean_sequences  = tokenizer.texts_to_sequences(test)
+  print("\nSequences value : \n",clean_sequences)
+  
+  if(len(clean_sequences[0]) == 0):
+    print("empty")  
+    return 3
+  
+  
   clean_input = pad_sequences(clean_sequences, maxlen=MAX_SEQUENCE_LENGTH)
-  print(test)
-  print(clean_input)
+  print("\nPadding sequences: \n",clean_input)
   #model prediction
 
+  # Model predict
   input_predictions = taglish_model.predict(clean_input, batch_size=1024, verbose=1)
 
+  #Tensor data computed by model
+  print("\nTensor data computed by model: \n",input_predictions)
+  
   labels = [2,0,1]
-
+  
+  # Convert tensor into its highest probability in labels
   input_prediction_labels = labels[np.argmax(input_predictions)]
 
+  print("\nConvert tensor into sentiments: \n",input_prediction_labels)
 
   return input_prediction_labels
