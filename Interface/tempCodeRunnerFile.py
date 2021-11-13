@@ -1,1 +1,1 @@
-test
+return render_template("analyze.html",sentiment='Input is Empty')
