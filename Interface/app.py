@@ -21,7 +21,7 @@ input_with_polarity = []
 app.config["DEBUG"] = True
 
 # Upload folder for files
-UPLOAD_FOLDER = 'C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/files/'
+UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
 app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 
 
