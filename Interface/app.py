@@ -31,7 +31,15 @@ app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 def main():
     return render_template("index.html")
 
-#sentiment area
+@app.route('/home')
+def home():
+    return render_template("index.html")
+
+@app.route('/about',methods=['POST','GET'])
+def about():
+    return render_template("about_us.html")
+
+# Go to analyze page
 @app.route('/sentiment',methods=['POST','GET'])
 def sentiment():
     return render_template("analyze.html")
