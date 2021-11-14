@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Metas -->
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
@@ -16,13 +17,14 @@
     <!-- Document Title -->
     <title>Project SAWE</title>
 </head>
+
 <body>
   <!-- HEADER SECTION -->  
   <header id="home">
     <div class="container">
       <nav class="navbar navbar-expand-lg navbar-light ">
         <!-- Change Logo Img Here -->
-        <a class="navbar-brand" href="#"><img src="../static/images/logo2.png" alt="logo" width="200px" height="400px" ></a>
+        <a class="navbar-brand" href="{{ url_for('home') }}"><img src="../static/images/logo2.png" alt="logo" width="200px" height="400px" ></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <div class="interactive-menu-button">
             <a href="#">
@@ -34,16 +36,16 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <!-- Nav Link -->
-              <a class="nav-link"  href="../templates/index.html">Home<span class="sr-only"></span></a>
+              <a class="nav-link"  href="{{ url_for('home') }}">Home<span class="sr-only"></span></a>
             </li>
             <li class="nav-item">
               <!-- Nav Link -->
-              <a class="nav-link" data-scroll href="#about-us">About Us</a>
+              <a class="nav-link" data-scroll href="{{ url_for('about') }}">About Us</a>
             </li>
           </ul>
-          <form  href="#a" class="contact-btn form-inline my-2 my-lg-0">
-            <button>Analyze Sentiments</button>
-          </form>
+          <a href="{{ url_for('sentiment') }}" class="contact-btn form-inline my-2 my-lg-0" >
+            Analyze Sentiments
+          </a>
         </div>
       </nav>
     </div>
@@ -144,9 +146,8 @@
           <h5>GROUP 1</h5>
           <h3>PROJECT SAWE</h3>
           <ul class="contact-nav">
-            <li><a href="../templates/index.html">Home.</a></li>
-            <li><a data-scroll href="#about-us">About Us.</a></li>
-            <li><a data-scroll href="#contact-us">Contact.</a></li>
+            <li><a href="{{ url_for('home') }}">Home.</a></li>
+            <li><a data-scroll href="{{ url_for('about') }}">About Us.</a></li>
           </ul>
           <h6>© 2021 - Project SAWE,All Right Reserved</h6>
         </div>
