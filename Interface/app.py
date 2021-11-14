@@ -20,7 +20,7 @@ input_with_polarity = []
 # enable debugging mode
 app.config["DEBUG"] = True
 
-# Upload folder
+# Upload folder for files
 UPLOAD_FOLDER = 'C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/files/'
 app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 
@@ -31,7 +31,15 @@ app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 def main():
     return render_template("index.html")
 
-#sentiment area
+@app.route('/home')
+def home():
+    return render_template("index.html")
+
+@app.route('/about',methods=['POST','GET'])
+def about():
+    return render_template("about_us.html")
+
+# Go to analyze page
 @app.route('/sentiment',methods=['POST','GET'])
 def sentiment():
     return render_template("analyze.html")
@@ -49,6 +57,9 @@ def predict():
         print(sentiment)
     else:
         return render_template("analyze.html",sentiment='Input is Empty')
+    
+    if(sentiment==3):
+        return render_template("analyze.html",sentiment='Input is invalid')
     
     if(sentiment==2):
         return render_template("analyze.html",sentiment='Predicted Sentiment:  Positive')
@@ -105,7 +116,11 @@ def uploadFiles():
 
         for text in data['text']:
             polarity = model.predict_sentiment(text)
-            sentiment_prediction.append(polarity[0])
+            
+            if(polarity[0]==3):
+                sentiment_prediction.append("invalid")
+            else:
+                sentiment_prediction.append(polarity[0])
 
             isEmoji.append(polarity[1])
 
@@ -191,7 +206,7 @@ def uploadFiles():
 
 def download():
 
-    header = ['Text', 'Polarity']
+    header = ['Text', 'Polarity','With Emoji']
 
     si = StringIO()
         
