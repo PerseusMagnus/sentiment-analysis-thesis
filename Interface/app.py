@@ -7,6 +7,8 @@ import os
 import pandas as pd
 import csv
 from io import StringIO
+import json
+import jsonify
 
 app = Flask(__name__)
 
@@ -51,24 +53,24 @@ def predict():
     
     input = request.form.get("sentimentArea")
 
-    if request.method == "POST":
+    if request.method == "POST" and input != '':
         # getting input with name = fname in HTML form
         sentiment = model.predict_single_sentiment(input)
         print(sentiment)
     else:
-        return render_template("analyze.html",sentiment='Input is Empty')
+        return render_template("analyze.html",sentiment='Input is Empty',input_text=input)
     
     if(sentiment==3):
         return render_template("analyze.html",sentiment='Input is invalid')
     
     if(sentiment==2):
-        return render_template("analyze.html",sentiment='Predicted Sentiment:  Positive')
+        return render_template("analyze.html",sentiment='Predicted Sentiment:  Positive',input_text=input)
 
     if(sentiment==1):
-        return render_template("analyze.html",sentiment='Predicted Sentiment:  Neutral')
+        return render_template("analyze.html",sentiment='Predicted Sentiment:  Neutral',input_text=input)
 
     if(sentiment==0):
-        return render_template("analyze.html",sentiment='Predicted Sentiment:  Negative')
+        return render_template("analyze.html",sentiment='Predicted Sentiment:  Negative',input_text=input)
 
 
 #predict multiple input   
@@ -96,7 +98,14 @@ def uploadFiles():
 
     print(uploaded_file.filename)
     
+    
+
+
     if uploaded_file.filename != '':
+        
+        if uploaded_file.filename.rsplit('.', 1)[1].lower() != 'csv':
+            
+            return render_template("analyze.html", show = "False")
 
         
 
@@ -104,6 +113,7 @@ def uploadFiles():
         # set the file path
         uploaded_file.save(file_path)
         # save the file
+        
 
         #read the uploaded file
         data = pd.read_csv(file_path,header = None)
@@ -131,7 +141,7 @@ def uploadFiles():
                 no_emoji += 1
 
         #write to csv
-        import csv  
+        
 
 
         #save the text and its respective polarity into list of list
@@ -174,6 +184,10 @@ def uploadFiles():
         print('Negative with emoji:',negative_with_emoji,'  Negative w/o emoji: ',negative_no_emoji)
         print('Neutral with emoji:',neutral_with_emoji,'  Neutral w/o emoji: ',neutral_no_emoji)
 
+        empty_file = 1
+    else:
+        empty_file = 0
+    
     #start ako dito 
     header = ['Text', 'Polarity','Emoji present']
 
@@ -194,11 +208,16 @@ def uploadFiles():
     output.headers["Content-Disposition"] = "attachment; filename=export.csv"
     output.headers["Content-type"] = "text/csv"
         
-    return render_template("analyze.html",positive = pos, negative=neg,neutral=neu,
-    with_emoji=emoji,wo_emoji=no_emoji, positive_with_emoji = positive_with_emoji,
-    negative_with_emoji = negative_with_emoji, neutral_with_emoji = neutral_with_emoji,
-    positive_no_emoji = positive_no_emoji, neutral_no_emoji = neutral_no_emoji,
-    negative_no_emoji = negative_no_emoji)
+    if(empty_file == 1):
+        return render_template("analyze.html",positive = pos, negative=neg,neutral=neu,
+        with_emoji=emoji,wo_emoji=no_emoji, positive_with_emoji = positive_with_emoji,
+        negative_with_emoji = negative_with_emoji, neutral_with_emoji = neutral_with_emoji,
+        positive_no_emoji = positive_no_emoji, neutral_no_emoji = neutral_no_emoji,
+        negative_no_emoji = negative_no_emoji)
+        
+    else:
+        
+        return render_template("analyze.html", show = "False")
     
 
 #download csv copy   
