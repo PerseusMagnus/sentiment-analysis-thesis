@@ -26,8 +26,8 @@ input_with_polarity = []
 app.config["DEBUG"] = True
 
 # Upload folder for files
-UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
-#UPLOAD_FOLDER = 'C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/files'
+#UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
+UPLOAD_FOLDER = 'C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/files'
 app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 
 
@@ -210,11 +210,27 @@ def uploadFiles():
         
     if(empty_file == 1):
         print("Okay pasok")
-        return render_template("analyze.html",positive = pos, negative=neg,neutral=neu,
-        with_emoji=emoji,wo_emoji=no_emoji, positive_with_emoji = positive_with_emoji,
-        negative_with_emoji = negative_with_emoji, neutral_with_emoji = neutral_with_emoji,
-        positive_no_emoji = positive_no_emoji, neutral_no_emoji = neutral_no_emoji,
-        negative_no_emoji = negative_no_emoji,show = "True")
+        return render_template("analyze.html", positive = 'Positive: ', positive_qty = pos, 
+                               
+        negative= 'Negative:', negative_qty = neg, neutral= 'Neutral:', neutral_qty = neu,
+        
+        with_emoji_label = 'With Emoji: ',with_emoji=emoji,
+        
+        wo_emoji_label = 'Without Emoji: ', wo_emoji=no_emoji,
+        
+        positive_emoji_label = 'Positive with Emoji: ',positive_with_emoji = positive_with_emoji,
+        
+        negative_emoji_label = 'Negative with Emoji',negative_with_emoji = negative_with_emoji,
+        
+        neutral_emoji_label = 'Neutral with Emoji: ',neutral_with_emoji = neutral_with_emoji,
+        
+        positive_no_emoji_label = 'Positive w/o Emoji',positive_no_emoji = positive_no_emoji,
+        
+        neutral_no_emoji_label = 'Neutral w/o Emoji: ',neutral_no_emoji = neutral_no_emoji,
+        
+        negative_no_emoji_label = 'Negative w/o Emoji: ',negative_no_emoji = negative_no_emoji,
+        
+        show = "True")
         
     else:
         print("Pangalawa")
