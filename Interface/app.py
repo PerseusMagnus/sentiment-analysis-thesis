@@ -23,7 +23,8 @@ input_with_polarity = []
 app.config["DEBUG"] = True
 
 # Upload folder for files
-UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
+#UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
+UPLOAD_FOLDER = 'C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/files'
 app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 
 
@@ -104,7 +105,7 @@ def uploadFiles():
     if uploaded_file.filename != '':
         
         if uploaded_file.filename.rsplit('.', 1)[1].lower() != 'csv':
-            
+            print("Una")
             return render_template("analyze.html", show = "False")
 
         
@@ -209,14 +210,15 @@ def uploadFiles():
     output.headers["Content-type"] = "text/csv"
         
     if(empty_file == 1):
+        print("Okay pasok")
         return render_template("analyze.html",positive = pos, negative=neg,neutral=neu,
         with_emoji=emoji,wo_emoji=no_emoji, positive_with_emoji = positive_with_emoji,
         negative_with_emoji = negative_with_emoji, neutral_with_emoji = neutral_with_emoji,
         positive_no_emoji = positive_no_emoji, neutral_no_emoji = neutral_no_emoji,
-        negative_no_emoji = negative_no_emoji)
+        negative_no_emoji = negative_no_emoji,show = "True")
         
     else:
-        
+        print("Pangalawa")
         return render_template("analyze.html", show = "False")
     
 
