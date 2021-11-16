@@ -11,14 +11,9 @@ if(show == "False"){
     console.log("sa unang false")
     alert("Invalid File Input")
 
-    Swal.fire(
-        'Wrong File Input',
-        'You clicked the button!',
-        'failed'
-      )
-
     window.localStorage.removeItem("show");
     document.getElementById("download").style.display = "none";
+
 //showDownload !='1'
 }else if(show == "Empty"){
     alert("Empty File Input")
