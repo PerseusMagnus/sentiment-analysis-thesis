@@ -46,6 +46,3 @@ stoplist = word_tokenize(stoplist)
 # FUNCTION TO REMOVE STOPWORDS
 def removeStopWords(tokens): 
     return [word for word in tokens if word not in stoplist]
-
-
-

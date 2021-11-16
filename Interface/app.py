@@ -64,13 +64,13 @@ def predict():
         return render_template("analyze.html",sentiment='Input is invalid')
     
     if(sentiment==2):
-        return render_template("analyze.html",sentiment='Predicted Sentiment:  Positive',input_text=input)
+        return render_template("analyze.html",sentiment='Predicted Sentiment:  Positive',input_text=input, input = 'Input text: ' + input)
 
     if(sentiment==1):
-        return render_template("analyze.html",sentiment='Predicted Sentiment:  Neutral',input_text=input)
+        return render_template("analyze.html",sentiment='Predicted Sentiment:  Neutral',input_text=input, input =  'Input text: ' + input)
 
     if(sentiment==0):
-        return render_template("analyze.html",sentiment='Predicted Sentiment:  Negative',input_text=input)
+        return render_template("analyze.html",sentiment='Predicted Sentiment:  Negative',input_text=input, input =  'Input text: ' + input)
 
 
 #predict multiple input   
@@ -94,13 +94,9 @@ def uploadFiles():
     input_with_polarity = []
 
     # get the uploaded file
-    uploaded_file = request.files['file']
-
-    print(uploaded_file.filename)
+    uploaded_file = request.files['file']    
     
-    
-
-
+    # check if the file is not empty 
     if uploaded_file.filename != '':
         
         if uploaded_file.filename.rsplit('.', 1)[1].lower() != 'csv':
@@ -218,7 +214,7 @@ def uploadFiles():
         
     else:
         print("Pangalawa")
-        return render_template("analyze.html", show = "False")
+        return render_template("analyze.html", show = "Empty")
     
 
 #download csv copy   

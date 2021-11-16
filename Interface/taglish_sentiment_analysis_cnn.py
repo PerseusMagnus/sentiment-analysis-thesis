@@ -8,6 +8,7 @@ import pickle
 from emoji import UNICODE_EMOJI
 
 
+
 MAX_SEQUENCE_LENGTH = 50
 EMBEDDING_DIM = 300
 TRAINING_VOCAB = 2455

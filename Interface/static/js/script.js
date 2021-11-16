@@ -10,11 +10,18 @@ let show = document.getElementById('show-value').innerHTML
 if(show == "False"){
     console.log("sa unang false")
     alert("Invalid File Input")
+
+    Swal.fire(
+        'Wrong File Input',
+        'You clicked the button!',
+        'failed'
+      )
+
     window.localStorage.removeItem("show");
     document.getElementById("download").style.display = "none";
 //showDownload !='1'
-}else if(show == "False"){
-    alert("Invalid File Input")
+}else if(show == "Empty"){
+    alert("Empty File Input")
     window.localStorage.removeItem("show");
     document.getElementById("download").style.display = "none";
 }else if(show == "True"){
@@ -29,29 +36,6 @@ if(show == "False"){
 function removeDisable(){
 
     window.localStorage.setItem("show", "1");
-
-    /*showDownload !='1'
-    if( show == "False"){
-        document.getElementById("download").style.display = "none";
-        alert("Invalid File Input")
-        /*
-        Swal.fire(
-            'Good job!',
-            'You clicked the button!',
-            'success'
-          )
-        
-    }else{
-        document.getElementById("download").style.display = "block";
-    }
-    */
-    
-
-
- //  document.getElementById("download").disabled = false;
-
-
-
 
 }
 
