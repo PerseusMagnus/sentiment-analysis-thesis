@@ -7,6 +7,10 @@ import os
 import pandas as pd
 import csv
 from io import StringIO
+import sys
+
+sys.stdin.reconfigure(encoding='utf-8')
+sys.stdout.reconfigure(encoding='utf-8')
 
 
 app = Flask(__name__)
