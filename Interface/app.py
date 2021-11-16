@@ -7,8 +7,7 @@ import os
 import pandas as pd
 import csv
 from io import StringIO
-import json
-import jsonify
+
 
 app = Flask(__name__)
 
