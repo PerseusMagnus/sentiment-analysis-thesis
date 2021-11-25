@@ -26,8 +26,8 @@ input_with_polarity = []
 app.config["DEBUG"] = True
 
 # Upload folder for files
-UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
-#UPLOAD_FOLDER = 'C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/files'
+#UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
+UPLOAD_FOLDER = 'C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/files'
 app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 
 
@@ -64,17 +64,20 @@ def predict():
     else:
         return render_template("analyze.html",sentiment='Input is Empty',input_text=input)
     
-    if(sentiment==3):
+    if(sentiment[0]==3):
         return render_template("analyze.html",sentiment='Input is invalid')
     
-    if(sentiment==2):
-        return render_template("analyze.html",sentiment='Predicted Sentiment:  Positive',input_text=input, input = 'Input text: ' + input)
+    if(sentiment[0]==2):
+        return render_template("analyze.html",sentiment='Predicted Sentiment:  Positive',input_text=input,
+                               input = 'Input text: ' + input, positive_percentage = sentiment[1],  negative_percentage = sentiment[2])
 
-    if(sentiment==1):
-        return render_template("analyze.html",sentiment='Predicted Sentiment:  Neutral',input_text=input, input =  'Input text: ' + input)
+    if(sentiment[0]==1):
+        return render_template("analyze.html",sentiment='Predicted Sentiment:  Neutral',input_text=input, input =  'Input text: ' 
+                               + input, positive_percentage = sentiment[1],  negative_percentage = sentiment[2])
 
-    if(sentiment==0):
-        return render_template("analyze.html",sentiment='Predicted Sentiment:  Negative',input_text=input, input =  'Input text: ' + input)
+    if(sentiment[0]==0):
+        return render_template("analyze.html",sentiment='Predicted Sentiment:  Negative',input_text=input, input =  'Input text: ' 
+                               + input, positive_percentage = sentiment[1],  negative_percentage = sentiment[2])
 
 
 #predict multiple input   
@@ -123,14 +126,29 @@ def uploadFiles():
         sentiment_prediction = []
         emoji = 0
         no_emoji = 0
+        
+        pos_percent = []
+        neg_percent = []
 
         for text in data['text']:
             polarity = model.predict_sentiment(text)
+            
+            print("ETOOOOO : ",polarity)
             
             if(polarity[0]==3):
                 sentiment_prediction.append("invalid")
             else:
                 sentiment_prediction.append(polarity[0])
+              
+            try:
+                pos_percent.append(polarity[2])
+            except:
+                pos_percent.append('N/A')
+                
+            try:
+                neg_percent.append(polarity[3])
+            except:
+                neg_percent.append('N/A')            
 
             isEmoji.append(polarity[1])
 
@@ -146,7 +164,7 @@ def uploadFiles():
 
         #save the text and its respective polarity into list of list
         for n in range(len(data['text'])):
-            input_with_polarity.append([data['text'][n],sentiment_prediction[n],isEmoji[n]])
+            input_with_polarity.append([data['text'][n],sentiment_prediction[n],isEmoji[n],pos_percent[n],neg_percent[n]])
 
             if(sentiment_prediction[n] == 0 ):
                 if(isEmoji[n] == 1):
@@ -189,7 +207,7 @@ def uploadFiles():
         empty_file = 0
     
     #start ako dito 
-    header = ['Text', 'Polarity','Emoji present']
+    header = ['Text', 'Polarity','Emoji present','Positive Percentage','Negative Percentage']
 
     si = StringIO()
         

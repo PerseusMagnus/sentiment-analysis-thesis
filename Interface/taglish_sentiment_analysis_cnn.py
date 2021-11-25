@@ -18,14 +18,14 @@ def is_emoji(s):
     return s in UNICODE_EMOJI['en']
 
 #LOAD MODEL
-#taglish_model = keras.models.load_model('C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
+taglish_model = keras.models.load_model('C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
 
-taglish_model = keras.models.load_model('C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
+#taglish_model = keras.models.load_model('C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
 
 #LOAD TOKENIZER
-#with open('C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/model/tokenizer.pickle', 'rb') as handle:
+with open('C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/model/tokenizer.pickle', 'rb') as handle:
 
-with open('C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/model/tokenizer.pickle', 'rb') as handle:
+#with open('C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/model/tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 
@@ -96,10 +96,15 @@ def predict_sentiment(input):
 
     # Convert tensor into its highest probability in labels
     input_prediction_labels = labels[np.argmax(input_predictions)]
+    
+    total = input_predictions[0][0] + input_predictions[0][1]
+
+    positive_percentage = "{:.2f}".format((input_predictions[0][0] / total) * 100)
+    negative_percentage = "{:.2f}".format((input_predictions[0][1] / total) * 100)
 
     print("\nConvert tensor into sentiments: \n",input_prediction_labels)
 
-  return input_prediction_labels,emoji
+  return input_prediction_labels,emoji,positive_percentage,negative_percentage
   
 
 def predict_single_sentiment(input):
@@ -135,7 +140,7 @@ def predict_single_sentiment(input):
   
   if(len(clean_sequences[0]) == 0):
     print("empty")  
-    return 3
+    return 3,2,1
   
   
   clean_input = pad_sequences(clean_sequences, maxlen=MAX_SEQUENCE_LENGTH)
@@ -154,5 +159,13 @@ def predict_single_sentiment(input):
   input_prediction_labels = labels[np.argmax(input_predictions)]
 
   print("\nConvert tensor into sentiments: \n",input_prediction_labels)
+  
+  total = input_predictions[0][0] + input_predictions[0][1]
 
-  return input_prediction_labels
+  positive_percentage = "{:.2f}".format((input_predictions[0][0] / total) * 100)
+  negative_percentage = "{:.2f}".format((input_predictions[0][1] / total) * 100)
+  
+  positive_percentage = "Positive Percentage: " + str(positive_percentage) 
+  negative_percentage = "Negative Percentage: " + str(negative_percentage) 
+
+  return input_prediction_labels,positive_percentage,negative_percentage
