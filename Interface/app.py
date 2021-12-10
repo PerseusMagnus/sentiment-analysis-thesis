@@ -64,20 +64,20 @@ def predict():
     else:
         return render_template("analyze.html",sentiment='Input is Empty',input_text=input)
     
-    if(sentiment[0]==3):
-        return render_template("analyze.html",sentiment='Input is invalid')
+    if(sentiment==3):
+       return render_template("analyze.html",sentiment='Input is invalid')
     
-    if(sentiment[0]==2):
+    if(sentiment==2):
         return render_template("analyze.html",sentiment='Predicted Sentiment:  Positive',input_text=input,
-                               input = 'Input text: ' + input, positive_percentage = sentiment[1],  negative_percentage = sentiment[2])
+                               input = 'Input text: ' + input)
 
-    if(sentiment[0]==1):
+    if(sentiment==1):
         return render_template("analyze.html",sentiment='Predicted Sentiment:  Neutral',input_text=input, input =  'Input text: ' 
-                               + input, positive_percentage = sentiment[1],  negative_percentage = sentiment[2])
+                               + input)
 
-    if(sentiment[0]==0):
+    if(sentiment==0):
         return render_template("analyze.html",sentiment='Predicted Sentiment:  Negative',input_text=input, input =  'Input text: ' 
-                               + input, positive_percentage = sentiment[1],  negative_percentage = sentiment[2])
+                               + input)
 
 
 #predict multiple input   
@@ -127,8 +127,7 @@ def uploadFiles():
         emoji = 0
         no_emoji = 0
         
-        pos_percent = []
-        neg_percent = []
+      
 
         for text in data['text']:
             polarity = model.predict_sentiment(text)
@@ -139,16 +138,7 @@ def uploadFiles():
                 sentiment_prediction.append("invalid")
             else:
                 sentiment_prediction.append(polarity[0])
-              
-            try:
-                pos_percent.append(polarity[2])
-            except:
-                pos_percent.append('N/A')
-                
-            try:
-                neg_percent.append(polarity[3])
-            except:
-                neg_percent.append('N/A')            
+                    
 
             isEmoji.append(polarity[1])
 
@@ -164,7 +154,7 @@ def uploadFiles():
 
         #save the text and its respective polarity into list of list
         for n in range(len(data['text'])):
-            input_with_polarity.append([data['text'][n],sentiment_prediction[n],isEmoji[n],pos_percent[n],neg_percent[n]])
+            input_with_polarity.append([data['text'][n],sentiment_prediction[n],isEmoji[n]])
 
             if(sentiment_prediction[n] == 0 ):
                 if(isEmoji[n] == 1):
@@ -195,19 +185,24 @@ def uploadFiles():
                 pos+=1
             if(sentiment==1):
                 neu+=1
+                
+        invalid_qty = len(data['text'])-(pos + neg)
         
         print('positive: ',pos,'  negative: ',neg,'  neutral: ',neu)
         print('with emoji: ',emoji,'   without emoji: ',no_emoji)
         print('Positive with emoji:',positive_with_emoji,'  Positive w/o emoji: ',positive_no_emoji)
         print('Negative with emoji:',negative_with_emoji,'  Negative w/o emoji: ',negative_no_emoji)
         print('Neutral with emoji:',neutral_with_emoji,'  Neutral w/o emoji: ',neutral_no_emoji)
+        print('Invalid:',invalid_qty)
 
+        
+        
         empty_file = 1
     else:
         empty_file = 0
     
     #start ako dito 
-    header = ['Text', 'Polarity','Emoji present','Positive Percentage','Negative Percentage']
+    header = ['Text', 'Polarity','Emoji present']
 
     si = StringIO()
         
@@ -248,10 +243,9 @@ def uploadFiles():
         
         negative_no_emoji_label = 'Negative w/o Emoji: ',negative_no_emoji = negative_no_emoji,
         
-        show = "True")
+        show = "True", invalid = "Invalid: ",invalid_qty = invalid_qty)
         
     else:
-        print("Pangalawa")
         return render_template("analyze.html", show = "Empty")
     
 
