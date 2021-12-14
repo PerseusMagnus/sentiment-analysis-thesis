@@ -8,7 +8,6 @@ import pickle
 from emoji import UNICODE_EMOJI
 
 
-
 MAX_SEQUENCE_LENGTH = 50
 EMBEDDING_DIM = 300
 TRAINING_VOCAB = 2455
@@ -96,15 +95,10 @@ def predict_sentiment(input):
 
     # Convert tensor into its highest probability in labels
     input_prediction_labels = labels[np.argmax(input_predictions)]
-    
-    total = input_predictions[0][0] + input_predictions[0][1]
-
-    positive_percentage = "{:.2f}".format((input_predictions[0][0] / total) * 100)
-    negative_percentage = "{:.2f}".format((input_predictions[0][1] / total) * 100)
 
     print("\nConvert tensor into sentiments: \n",input_prediction_labels)
 
-  return input_prediction_labels,emoji,positive_percentage,negative_percentage
+  return input_prediction_labels,emoji
   
 
 def predict_single_sentiment(input):
@@ -140,7 +134,7 @@ def predict_single_sentiment(input):
   
   if(len(clean_sequences[0]) == 0):
     print("empty")  
-    return 3,2,1
+    return 3
   
   
   clean_input = pad_sequences(clean_sequences, maxlen=MAX_SEQUENCE_LENGTH)
@@ -159,13 +153,5 @@ def predict_single_sentiment(input):
   input_prediction_labels = labels[np.argmax(input_predictions)]
 
   print("\nConvert tensor into sentiments: \n",input_prediction_labels)
-  
-  total = input_predictions[0][0] + input_predictions[0][1]
 
-  positive_percentage = "{:.2f}".format((input_predictions[0][0] / total) * 100)
-  negative_percentage = "{:.2f}".format((input_predictions[0][1] / total) * 100)
-  
-  positive_percentage = "Positive Percentage: " + str(positive_percentage) 
-  negative_percentage = "Negative Percentage: " + str(negative_percentage) 
-
-  return input_prediction_labels,positive_percentage,negative_percentage
+  return input_prediction_labels
