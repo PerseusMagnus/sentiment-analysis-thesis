@@ -1,19 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def show_chart():
-
-    # Creating dataset
-    sentiment = ['NEGATIVE', 'NEUTRAL', 'POSITIVE','INVALID']
+def show_chart(sentiment, data, colors, explode):
     
-    data = [390, 367, 410,21]
-    
-    
-    # Creating explode data
-    explode = (0.0, 0.0, 0.0, 0.0)
-    
-    # Creating color parameters
-    colors = ( "red", "grey", "green",'black')
     
     # Wedge properties
     wp = { 'linewidth' : 1, 'edgecolor' : "black" }
@@ -49,5 +38,18 @@ def show_chart():
     # show plot
     plt.show()
 
+
     
-show_chart()
+def show_sentiment_chart():
+    # Creating dataset
+    sentiment = ['NEGATIVE', 'NEUTRAL', 'POSITIVE','INVALID']
+    
+    data = [390, 367, 410,21]
+    
+    # Creating color parameters
+    colors = ( "red", "grey", "green",'black')
+    
+    # Creating explode data
+    explode = (0.0, 0.0, 0.0, 0.0)
+
+    show_chart(sentiment, data, colors, explode)
