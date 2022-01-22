@@ -1,13 +1,20 @@
 from nltk import word_tokenize, WordNetLemmatizer
-import nltk
+import os
+
+
+
 from flask import Flask, render_template, request, redirect, url_for, flash, make_response
 import taglish_sentiment_analysis_cnn as model
+
+
 from werkzeug.utils import secure_filename
 import os
 import pandas as pd
 import csv
 from io import StringIO
 import sys
+
+
 
 sys.stdin.reconfigure(encoding='utf-8')
 sys.stdout.reconfigure(encoding='utf-8')
@@ -26,8 +33,8 @@ input_with_polarity = []
 app.config["DEBUG"] = True
 
 # Upload folder for files
-UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
-#UPLOAD_FOLDER = 'C:/Users/ditab/Documents/thesis development/sentiment-analysis-thesis/Interface/static/files'
+#UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
+UPLOAD_FOLDER = 'C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/files'
 app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 
 
@@ -277,3 +284,4 @@ def download():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
