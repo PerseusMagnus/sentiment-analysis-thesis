@@ -109,8 +109,8 @@
                 </form>
               </div>
             
-
           </div>
+
           <div class="col-6">
             <h3>RESULT SUMMARY:</h3>
             <div class=row>
@@ -142,9 +142,79 @@
     </div>
   </section> 
 
-  <img src="../static/images/chart.png" id="chart_img">
+
+  <!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+
+    <div class="col-6">
+      <h3>RESULT SUMMARY:</h3>
+      <div class=row>
+        <div class="col-2 col-lg-3">
+          <h5>{{positive}}</h5> <p>{{positive_qty}} </p>
+          <h5>{{negative}}</h5> <p>{{negative_qty}}</p> 
+          <h5>{{neutral}}</h5>  <p>{{neutral_qty}}</p>  
+          <h5>{{invalid}}</h5> <p>{{invalid_qty}}</p> 
+
+        </div>
+        <div class="col-2 col-lg-3">
+          <h5>{{with_emoji_label}}</h5> <p>{{with_emoji}}</p>    
+          <h5>{{wo_emoji_label}}</h5>  <p>{{wo_emoji}}</p>
+        </div>
+        <div class="col-2 col-lg-3">
+          <h5>{{positive_emoji_label}}</h5> <p>{{positive_with_emoji}}</p>   
+          <h5>{{neutral_emoji_label}}</h5>  <p>{{neutral_with_emoji}}</p> 
+          <h5>{{negative_emoji_label}}</h5> <p>{{negative_with_emoji}}</p>  
+        </div>
+        <div class="col-2 col-lg-3">
+          <h5>{{positive_no_emoji_label}}</h5> <p>{{positive_no_emoji}}</p>    
+          <h5>{{neutral_no_emoji_label}}</h5>  <p>{{neutral_no_emoji}}</p>  
+          <h5>{{negative_no_emoji_label}}</h5> <p>{{negative_no_emoji}}</p> 
+        </div>
+      </div>
+    </div>
+    
+
+    <div id = "chart_image" >
+
+      <img src="../static/images/sentiment_chart.png" id="chart_img">
+  
+      <img src="../static/images/with_emoji_chart.png" id="chart_img">
+  
+      <img src="../static/images/sentiment_with_emoji_chart.png" id="chart_img">
+  
+      <img src="../static/images/sentiment_without_emoji_chart.png" id="chart_img">
+  
+    </div>
+
+   
+  </div>
+
+</div>
+
+
+<!-- Chart Image -->
+  <div id = "chart" >
+
+    <img src="../static/images/sentiment_chart.png" id="chart_img">
+
+    <img src="../static/images/with_emoji_chart.png" id="chart_img">
+
+    <img src="../static/images/sentiment_with_emoji_chart.png" id="chart_img">
+
+    <img src="../static/images/sentiment_without_emoji_chart.png" id="chart_img">
+
+  </div>
 
   <p id="show-value" hidden>{{show}}</p>
+
+  
  
 
   <!-- FOOTER SECTION -->

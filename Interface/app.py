@@ -1,11 +1,12 @@
 from nltk import word_tokenize, WordNetLemmatizer
 import os
-
-
+import numpy as np
+import matplotlib.pyplot as plt
+import time 
+import chart as charting
 
 from flask import Flask, render_template, request, redirect, url_for, flash, make_response
 import taglish_sentiment_analysis_cnn as model
-
 
 from werkzeug.utils import secure_filename
 import os
@@ -86,6 +87,121 @@ def predict():
         return render_template("analyze.html",sentiment='Predicted Sentiment:  Negative',input_text=input, input =  'Input text: ' 
                                + input)
 
+#------------------------------------------------------------------------------------------------------------------------------
+
+def show_chart(sentiment, data, colors, explode, chart_name):
+    
+    
+    # Wedge properties
+    wp = { 'linewidth' : 1.5, 'edgecolor' : "black" }
+    
+    # Creating autocpt arguments
+    def func(pct, allvalues):
+        absolute = int(pct / 100.*np.sum(allvalues))
+        return "{:.1f}%\n({:d} )".format(pct, absolute)
+    
+    # Creating plot
+    fig, ax = plt.subplots(figsize =(10, 7))
+    wedges, texts, autotexts = ax.pie(data,
+                                    autopct = lambda pct: func(pct, data),
+                                    explode = explode,
+                                    labels = sentiment,
+                                    shadow = True,
+                                    colors = colors,
+                                    startangle = 90,
+                                    wedgeprops = wp,
+                                    textprops = dict(color ="white"))
+    
+    # Adding legend
+    ax.legend(wedges, sentiment,
+            title ="Sentiment Polarity",
+            loc ="center left",
+            bbox_to_anchor =(1.07, 0, 0.5, 1))
+    
+    plt.setp(autotexts, size = 12, weight ="bold")
+    ax.set_title("Chart")
+    
+    filename = 'C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/images/' + chart_name
+    plt.savefig(filename) 
+
+    # show plot
+    #plt.show()
+
+
+# CHART BY SENTIMENT POLARITY  
+def show_sentiment_chart(data):
+    
+    chart_name = 'sentiment_chart'
+    
+    print(data)
+    
+    # Creating dataset
+    sentiment = ['NEGATIVE', 'NEUTRAL', 'POSITIVE','INVALID']
+    
+    
+    # Creating color parameters
+    colors = ( "#ff3a47", "#7c777a", "#31458c",'#003700')
+    
+    # Creating explode data
+    explode = (0.01, 0.01, 0.01, 0.01)
+
+    show_chart(sentiment, data, colors, explode, chart_name)
+   
+   
+   
+# CHART BY WITH OR WITHOUT EMOJI 
+def show_with_emoji_chart(data):
+    
+    chart_name = 'with_emoji_chart'
+    
+    # Creating dataset
+    sentiment = ['WITH EMOJI', 'WITHOUT EMOJI']
+    
+    # Creating color parameters
+    colors = ( "#31458c", "#ff3a47")
+    
+    # Creating explode data
+    explode = (0.01, 0.01)
+
+    show_chart(sentiment, data, colors, explode,chart_name)
+    
+    
+    
+# CHART BY SENTIMENT POLARITY WITH OR WITHOUT EMOJI    
+def show_sentiment_with_emoji_chart(data):
+    
+    chart_name = 'sentiment_with_emoji_chart'
+    
+    # Creating dataset
+    sentiment = ['Positive with Emoji', 'Neutral with Emoji', 'Negative with Emoji' ]
+    
+    # Creating color parameters
+    colors = ( "#31458c", "#7c777a", "#ff3a47")
+    
+    # Creating explode data
+    explode = (0.01, 0.01, 0.01)
+
+    show_chart(sentiment, data, colors, explode, chart_name)
+
+
+# CHART BY SENTIMENT POLARITY WITH OR WITHOUT EMOJI    
+def show_sentiment_without_emoji_chart(data):
+    
+    chart_name = 'sentiment_without_emoji_chart'
+    
+    # Creating dataset
+    sentiment = [ 'Positive without Emoji', 'Neutral without Emoji', 'Negative without Emoji' ]
+    
+    # Creating color parameters
+    colors = ( '#31458c','#7c777a','#ff3a47')
+    
+    # Creating explode data
+    explode = ( 0.01, 0.01, 0.01)
+
+    show_chart(sentiment, data, colors, explode, chart_name)
+
+
+#------------------------------------------------------------------------------------------------------------------------------
 
 #predict multiple input   
 @app.route('/predict_multiple',methods=['POST','GET'])
@@ -229,7 +345,22 @@ def uploadFiles():
     output.headers["Content-type"] = "text/csv"
         
     if(empty_file == 1):
-        print("Okay pasok")
+        
+        # GET THE DATA THAT WILL BE FED INTO THE CHART
+        data = (pos, neg, neu, invalid_qty)
+        show_sentiment_chart(data)
+        
+        data = (emoji,no_emoji)
+        show_with_emoji_chart(data)
+        
+        data = (positive_with_emoji,negative_with_emoji,neutral_with_emoji)
+        show_sentiment_with_emoji_chart(data)
+        
+        data = (positive_no_emoji,neutral_no_emoji,negative_no_emoji)
+        show_sentiment_without_emoji_chart(data)
+        
+        time.sleep(2)
+        
         return render_template("analyze.html", positive = 'Positive: ', positive_qty = pos, 
                                
         negative= 'Negative:', negative_qty = neg, neutral= 'Neutral:', neutral_qty = neu,
@@ -251,6 +382,8 @@ def uploadFiles():
         negative_no_emoji_label = 'Negative w/o Emoji: ',negative_no_emoji = negative_no_emoji,
         
         show = "True", invalid = "Invalid: ",invalid_qty = invalid_qty)
+        
+        
         
     else:
         return render_template("analyze.html", show = "Empty")

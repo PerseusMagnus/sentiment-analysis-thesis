@@ -1,17 +1,16 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import time
 
 def show_chart(sentiment, data, colors, explode, chart_name):
     
     
     # Wedge properties
-    wp = { 'linewidth' : 3, 'edgecolor' : "black" }
+    wp = { 'linewidth' : 1, 'edgecolor' : "black" }
     
     # Creating autocpt arguments
     def func(pct, allvalues):
         absolute = int(pct / 100.*np.sum(allvalues))
-        return "{:.1f}%\n({:d} )".format(pct, absolute)
+        return "{:.1f}%\n({:d} g)".format(pct, absolute)
     
     # Creating plot
     fig, ax = plt.subplots(figsize =(10, 7))
@@ -32,7 +31,7 @@ def show_chart(sentiment, data, colors, explode, chart_name):
             bbox_to_anchor =(1.07, 0, 0.5, 1))
     
     plt.setp(autotexts, size = 12, weight ="bold")
-    ax.set_title("Chart")
+    ax.set_title("Without Emoji")
     
     filename = 'C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/images/' + chart_name
     plt.savefig(filename) 
@@ -46,11 +45,10 @@ def show_sentiment_chart(data):
     
     chart_name = 'sentiment_chart'
     
-    print(data)
-    
     # Creating dataset
     sentiment = ['NEGATIVE', 'NEUTRAL', 'POSITIVE','INVALID']
     
+    data = [390, 367, 410,21]
     
     # Creating color parameters
     colors = ( "red", "grey", "green",'black')
