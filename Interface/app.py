@@ -97,7 +97,7 @@ def show_chart(sentiment, data, colors, explode, chart_name):
     
     # Creating autocpt arguments
     def func(pct, allvalues):
-        absolute = int(pct / 100.*np.sum(allvalues))
+        absolute = int(round(pct / 100.*np.sum(allvalues)))
         return "{:.1f}%\n({:d} )".format(pct, absolute)
     
     # Creating plot
