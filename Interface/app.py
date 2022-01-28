@@ -89,7 +89,7 @@ def predict():
 
 #------------------------------------------------------------------------------------------------------------------------------
 
-def show_chart(sentiment, data, colors, explode, chart_name):
+def show_chart(sentiment, data, colors, explode, chart_name,title):
     
     
     # Wedge properties
@@ -119,7 +119,7 @@ def show_chart(sentiment, data, colors, explode, chart_name):
             bbox_to_anchor =(1.07, 0, 0.5, 1))
     
     plt.setp(autotexts, size = 12, weight ="bold")
-    ax.set_title("Chart")
+    ax.set_title(title)
     
     filename = 'C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/images/' + chart_name
     plt.savefig(filename) 
@@ -144,8 +144,10 @@ def show_sentiment_chart(data):
     
     # Creating explode data
     explode = (0.01, 0.01, 0.01, 0.01)
+    
+    title = "Chart by Sentiment Polarity"
 
-    show_chart(sentiment, data, colors, explode, chart_name)
+    show_chart(sentiment, data, colors, explode, chart_name, title)
    
    
    
@@ -162,8 +164,10 @@ def show_with_emoji_chart(data):
     
     # Creating explode data
     explode = (0.01, 0.01)
+    
+    title = "Chart by Emoji Presence"
 
-    show_chart(sentiment, data, colors, explode,chart_name)
+    show_chart(sentiment, data, colors, explode,chart_name,title)
     
     
     
@@ -180,8 +184,10 @@ def show_sentiment_with_emoji_chart(data):
     
     # Creating explode data
     explode = (0.01, 0.01, 0.01)
+    
+    title = "Chart by Sentiment With Emoji"
 
-    show_chart(sentiment, data, colors, explode, chart_name)
+    show_chart(sentiment, data, colors, explode, chart_name,title)
 
 
 # CHART BY SENTIMENT POLARITY WITH OR WITHOUT EMOJI    
@@ -197,8 +203,10 @@ def show_sentiment_without_emoji_chart(data):
     
     # Creating explode data
     explode = ( 0.01, 0.01, 0.01)
+    
+    title = "Chart by Sentiment Without Emoji"
 
-    show_chart(sentiment, data, colors, explode, chart_name)
+    show_chart(sentiment, data, colors, explode, chart_name,title)
 
 
 #------------------------------------------------------------------------------------------------------------------------------
