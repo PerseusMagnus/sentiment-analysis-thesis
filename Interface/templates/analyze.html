@@ -100,7 +100,7 @@
               </div>
               <br>
               <div class = "col-12 lg-2">
-                <button onclick = "removeDisable()" id = "analyze-btn" class="analyze-btn" type="submit" value="Submit">Multiple Analyze</button>
+                <button onclick = "showLoading(); removeDisable();" id = "analyze-btn" class="analyze-btn" type="submit" value="Submit">Multiple Analyze</button>
            </form>
            <br> <br>
                 <a></a>
@@ -138,7 +138,7 @@
         <th>Sentiment Count</th>
         <th>Emoji Count</th>
         <th>Sentiment with Emoji Count</th>
-        <th>Sentiment withot Emoji Count</th>
+        <th>Sentiment without Emoji Count</th>
       </tr>
       <tr>
         <td><h5>{{positive}}</h5> <p>{{positive_qty}} </p></td>
@@ -183,9 +183,20 @@
 
 </div>
 
+  <div class="content">
+  </div>
+
+  <div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+
+  
 
   <p id="show-value" hidden>{{show}}</p>
-
+  
+  
+  <span class="loader" id = "loading-bar"> <span class="loader-inner"></span></span>
+  
   
  
 
@@ -225,5 +236,13 @@
   <script src="../static/js/emojionearea.min.js"></script>
   <script src="../static/js/main.js"></script>
   <!-- Scripts Ends -->
+
+  <script>
+    $(window).on("load",function(){
+      $(".loader-wrapper").fadeOut("slow");
+    });
+
+  </script>
+
 </body>
 </html>
