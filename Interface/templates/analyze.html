@@ -114,27 +114,8 @@
           <div class="col-6">
             <h3>RESULT SUMMARY:</h3>
             <div class=row>
-              <div class="col-2 col-lg-3">
-                <h5>{{positive}}</h5> <p>{{positive_qty}} </p>
-                <h5>{{negative}}</h5> <p>{{negative_qty}}</p> 
-                <h5>{{neutral}}</h5>  <p>{{neutral_qty}}</p>  
-                <h5>{{invalid}}</h5> <p>{{invalid_qty}}</p> 
-
-              </div>
-              <div class="col-2 col-lg-3">
-                <h5>{{with_emoji_label}}</h5> <p>{{with_emoji}}</p>    
-                <h5>{{wo_emoji_label}}</h5>  <p>{{wo_emoji}}</p>
-              </div>
-              <div class="col-2 col-lg-3">
-                <h5>{{positive_emoji_label}}</h5> <p>{{positive_with_emoji}}</p>   
-                <h5>{{neutral_emoji_label}}</h5>  <p>{{neutral_with_emoji}}</p> 
-                <h5>{{negative_emoji_label}}</h5> <p>{{negative_with_emoji}}</p>  
-              </div>
-              <div class="col-2 col-lg-3">
-                <h5>{{positive_no_emoji_label}}</h5> <p>{{positive_no_emoji}}</p>    
-                <h5>{{neutral_no_emoji_label}}</h5>  <p>{{neutral_no_emoji}}</p>  
-                <h5>{{negative_no_emoji_label}}</h5> <p>{{negative_no_emoji}}</p> 
-              </div>
+              <!-- Trigger/Open The Modal -->
+              <button id="myBtn" class="analyze-btn">See Results...</button>
             </div>
           </div>
         </div>
@@ -143,8 +124,6 @@
   </section> 
 
 
-  <!-- Trigger/Open The Modal -->
-<button id="myBtn" class="analyze-btn">See Results...</button>
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -153,42 +132,39 @@
   <div class="modal-content">
     <span class="close">&times;</span>
 
-    <table>
+    <table class="col-12">
+      <h3>RESULT SUMMARY:</h3>
       <tr>
-        <td>
-          <div class="col-6">
-            <h3>RESULT SUMMARY:</h3>
-            <div class=row>
-              <div class="col-2 col-lg-3">
-                <h5>{{positive}}</h5> <p>{{positive_qty}} </p>
-                <h5>{{negative}}</h5> <p>{{negative_qty}}</p> 
-                <h5>{{neutral}}</h5>  <p>{{neutral_qty}}</p>  
-                <h5>{{invalid}}</h5> <p>{{invalid_qty}}</p> 
-
-              </div>
-              <div class="col-2 col-lg-3">
-                <h5>{{with_emoji_label}}</h5> <p>{{with_emoji}}</p>    
-                <h5>{{wo_emoji_label}}</h5>  <p>{{wo_emoji}}</p>
-              </div>
-              <div class="col-2 col-lg-3">
-                <h5>{{positive_emoji_label}}</h5> <p>{{positive_with_emoji}}</p>   
-                <h5>{{neutral_emoji_label}}</h5>  <p>{{neutral_with_emoji}}</p> 
-                <h5>{{negative_emoji_label}}</h5> <p>{{negative_with_emoji}}</p>  
-              </div>
-              <div class="col-2 col-lg-3">
-                <h5>{{positive_no_emoji_label}}</h5> <p>{{positive_no_emoji}}</p>    
-                <h5>{{neutral_no_emoji_label}}</h5>  <p>{{neutral_no_emoji}}</p>  
-                <h5>{{negative_no_emoji_label}}</h5> <p>{{negative_no_emoji}}</p> 
-              </div>
-            </div>
-          </div>
-        </td>
-    </tr>
-  </table>
+        <th>Sentiment Count</th>
+        <th>Emoji Count</th>
+        <th>Sentiment with Emoji Count</th>
+        <th>Sentiment withot Emoji Count</th>
+      </tr>
+      <tr>
+        <td><h5>{{positive}}</h5> <p>{{positive_qty}} </p></td>
+        <td><h5>{{with_emoji_label}}</h5> <p>{{with_emoji}}</p>  </p></td>
+        <td> <h5>{{positive_emoji_label}}</h5> <p>{{positive_with_emoji}}</p></td>
+        <td><h5>{{positive_no_emoji_label}}</h5> <p>{{positive_no_emoji}}</p></td>
+      </tr>
+      <tr>
+        <td><h5>{{negative}}</h5> <p>{{negative_qty}}</p> </td>
+        <td><h5>{{wo_emoji_label}}</h5>  <p>{{wo_emoji}}</p></td>
+        <td><h5>{{negative_emoji_label}}</h5> <p>{{negative_with_emoji}}</p></td>
+        <td><h5>{{negative_no_emoji_label}}</h5> <p>{{negative_no_emoji}}</p> </td>
+      </tr>
+      <tr>
+        <td><h5>{{neutral}}</h5>  <p>{{neutral_qty}}</p> </td>
+        <td></td>
+        <td><h5>{{neutral_emoji_label}}</h5>  <p>{{neutral_with_emoji}}</p> </td>
+        <td><h5>{{neutral_no_emoji_label}}</h5>  <p>{{neutral_no_emoji}}</p>  </td>
+      </tr>
+      <tr> 
+        <td><h5>{{invalid}}</h5> <p>{{invalid_qty}}</p> </td>
+      </tr>
+    </table>
 
     <div id = "chart_image" >
-      <table>
-
+      <table class="col-11">
         <tr>
           <td> <img src="../static/images/sentiment_chart.png" id="chart_img">
           <td> <img src="../static/images/with_emoji_chart.png" id="chart_img">
