@@ -100,7 +100,7 @@
               </div>
               <br>
               <div class = "col-12 lg-2">
-                <button onclick = "removeDisable()" id = "analyze-btn" class="analyze-btn" type="submit" value="Submit">Multiple Analyze</button>
+                <button onclick = "showLoading(); removeDisable();" id = "analyze-btn" class="analyze-btn" type="submit" value="Submit">Multiple Analyze</button>
            </form>
            <br> <br>
                 <a></a>
@@ -185,8 +185,11 @@
 
 
   <p id="show-value" hidden>{{show}}</p>
-
   
+  <div class = "modal-class" >
+  <span class="loader" id = "loading-bar"> <span class="loader-inner"></span></span>
+
+  </div>
  
 
   <!-- FOOTER SECTION -->

@@ -238,7 +238,6 @@ def uploadFiles():
     if uploaded_file.filename != '':
         
         if uploaded_file.filename.rsplit('.', 1)[1].lower() != 'csv':
-            print("Una")
             return render_template("analyze.html", show = "False")
 
         
@@ -247,10 +246,18 @@ def uploadFiles():
         # set the file path
         uploaded_file.save(file_path)
         # save the file
-        
+         
 
         #read the uploaded file
         data = pd.read_csv(file_path,header = None)
+        
+        cols = len(data.axes[1])
+        
+        # CHECK HOW MANY COLUMNS OF THE CSV FILE
+        
+        if cols > 1 :
+            return render_template("analyze.html", show = "False")
+            
 
         data.columns = ['text']
 
