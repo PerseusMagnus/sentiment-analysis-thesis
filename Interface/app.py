@@ -34,8 +34,8 @@ input_with_polarity = []
 app.config["DEBUG"] = True
 
 # Upload folder for files
-#UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
-UPLOAD_FOLDER = 'C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/files'
+UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
+#UPLOAD_FOLDER = 'C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/files'
 app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
 
 
@@ -91,7 +91,7 @@ def predict():
 
 def show_chart(sentiment, data, colors, explode, chart_name,title):
     
-    
+        
     # Wedge properties
     wp = { 'linewidth' : 1.5, 'edgecolor' : "black" }
     
