@@ -50,6 +50,6 @@ function removeDisable(){
 function loading(){
     $(window).on("load",function(){
   
-      $(".loader-wrapper")
+      $(".loader-wrapper").fadeOut("slow");
     });
   }
