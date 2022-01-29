@@ -847,3 +847,7 @@ footer h6 {
 .myBtn{
   margin-left: 200px;
 }
+
+.modal-content{
+  z-index: -1;
+}
