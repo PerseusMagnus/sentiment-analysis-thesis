@@ -8,21 +8,28 @@ let showDownload = window.localStorage.getItem('show');
 let show = document.getElementById('show-value').innerHTML
 //showDownload !='1'  &&  
 if(show == "False"){
-    console.log("sa unang false")
+    
     alert("Invalid File Input")
 
     window.localStorage.removeItem("show");
     document.getElementById("download").style.display = "none";
+    document.getElementById("myBtn").style.display = "none";
+
 
 //showDownload !='1'
 }else if(show == "Empty"){
     alert("Empty File Input")
     window.localStorage.removeItem("show");
     document.getElementById("download").style.display = "none";
+    document.getElementById("myBtn").style.display = "none";
+
 }else if(show == "True"){
     document.getElementById("download").style.display = "block";
+    document.getElementById("myBtn").style.display = "block";
+
 }else{
     document.getElementById("download").style.display = "none";
+    document.getElementById("myBtn").style.display = "none";
 }
 
 
