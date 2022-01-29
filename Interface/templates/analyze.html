@@ -183,13 +183,27 @@
 
 </div>
 
+  <div class="content">
+    <img src="https://picsum.photos/300/300/?random" />
+  </div>
+
+  <div class="loader-wrapper">
+    <span class="loader"><span class="loader-inner"></span></span>
+  </div>
+
+  <script>
+    $(window).on("load",function(){
+      $(".loader-wrapper").fadeOut("slow");
+    });
+
+  </script>
 
   <p id="show-value" hidden>{{show}}</p>
   
-  <div class = "modal-class" >
+  
   <span class="loader" id = "loading-bar"> <span class="loader-inner"></span></span>
-
-  </div>
+  
+  
  
 
   <!-- FOOTER SECTION -->

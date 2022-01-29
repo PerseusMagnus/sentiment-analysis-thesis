@@ -47,3 +47,7 @@ function removeDisable(){
 
 }
 
+function clickLoading() {
+    document.getElementById("container").css("opacity",0.5);
+    //$("#loading-img").css({"display": "block"});
+}
