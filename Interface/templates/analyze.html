@@ -184,19 +184,13 @@
 </div>
 
   <div class="content">
-    <img src="https://picsum.photos/300/300/?random" />
   </div>
 
   <div class="loader-wrapper">
     <span class="loader"><span class="loader-inner"></span></span>
   </div>
 
-  <script>
-    $(window).on("load",function(){
-      $(".loader-wrapper").fadeOut("slow");
-    });
-
-  </script>
+  
 
   <p id="show-value" hidden>{{show}}</p>
   
@@ -242,5 +236,13 @@
   <script src="../static/js/emojionearea.min.js"></script>
   <script src="../static/js/main.js"></script>
   <!-- Scripts Ends -->
+
+  <script>
+    $(window).on("load",function(){
+      $(".loader-wrapper").fadeOut("slow");
+    });
+
+  </script>
+
 </body>
 </html>
