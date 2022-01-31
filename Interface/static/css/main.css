@@ -928,3 +928,6 @@ footer h6 {
 }
 
 
+.loader-wrapper{
+  display: none;
+}

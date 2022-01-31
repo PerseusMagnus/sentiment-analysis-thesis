@@ -111,7 +111,7 @@ if(show == "False"){
     window.localStorage.removeItem("show");
     document.getElementById("download").style.display = "none";
     document.getElementById("myBtn").style.display = "none";
-    //document.getElementById("loading-bar").style.display = "none";
+    $(".loader-wrapper").css("display","none")
 
 
 //showDownload !='1'
@@ -120,35 +120,21 @@ if(show == "False"){
     window.localStorage.removeItem("show");
     document.getElementById("download").style.display = "none";
     document.getElementById("myBtn").style.display = "none";
-    //$(".loader-wrapper").style.display = "none";
-    $(".loader-wrapper").hidden = true;
+    $(".loader-wrapper").css("display","none")
 
 }else if(show == "True"){
     document.getElementById("download").style.display = "block";
     document.getElementById("myBtn").style.display = "block";
 
-    $(window).on("load",function(){
-      $(".loader-wrapper").fadeOut("slow");
-    });
+    $(".loader-wrapper").css("display","none")
 
 }else{
     document.getElementById("download").style.display = "none";
     document.getElementById("myBtn").style.display = "none";
-    
+    $(".loader-wrapper").css("display","none")
 }
 
 
-function startLoading(){
-  console.log("hi")
-
-
-  
-  $(window).on("load",function(){
-    $(".loader-wrapper").fadeOut("slow");
-  });
-
-  console.log("loading end")
-}
 
 
 // to fade the loading animation 

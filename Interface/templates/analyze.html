@@ -184,7 +184,7 @@
 </div>
 
 
-  <div class="loader-wrapper" id = "start-loading" hidden >
+  <div class="loader-wrapper" id = "start-loading"  >
     <p> LOADING... <p>
     <span class="loader"><span class="loader-inner"></span></span>
   </div>
@@ -233,6 +233,17 @@
   <script src="../static/js/main.js"></script>
   <!-- Scripts Ends -->
 
+
+  <script>
+
+    function startLoading(){
+      console.log("hi");
+    
+      $(".loader-wrapper").css("display","block")
+
+      console.log("end");
+    }
+  </script>
 
 </body>
 </html>
