@@ -931,3 +931,12 @@ footer h6 {
 .loader-wrapper{
   display: none;
 }
+
+#label-loading{
+  font-size: 40px;
+  color: #fefefe ;
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 48%;
+}
