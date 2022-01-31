@@ -95,9 +95,4 @@ window.onclick = function(event) {
 }
 
 
-function loading(){
-  $(window).on("load",function(){
 
-    $(".loader-wrapper")
-  });
-}
