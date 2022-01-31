@@ -17,13 +17,13 @@ def is_emoji(s):
     return s in UNICODE_EMOJI['en']
 
 #LOAD MODEL
-#taglish_model = keras.models.load_model('C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
+taglish_model = keras.models.load_model('C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
 
-taglish_model = keras.models.load_model('C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
+#taglish_model = keras.models.load_model('C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/model/tag-lish_cnn.h5')
 
 #LOAD TOKENIZER
-#with open('C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/model/tokenizer.pickle', 'rb') as handle:
-with open('C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/model/tokenizer.pickle', 'rb') as handle:
+with open('C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/model/tokenizer.pickle', 'rb') as handle:
+#with open('C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/model/tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
 
 
