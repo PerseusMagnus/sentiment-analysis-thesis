@@ -137,16 +137,6 @@ if(show == "False"){
 
 
 
-// to fade the loading animation 
-function endLoading(){
-  
-  console.log("hi")
-  $(window).on("load",function(){
-    $(".loader-wrapper").fadeOut("slow");
-  });
-
-  }
-
 
 // to show and hide download button
   function removeDisable(){

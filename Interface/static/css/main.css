@@ -933,10 +933,12 @@ footer h6 {
 }
 
 #label-loading{
+
   font-size: 40px;
   color: #fefefe ;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Century Gothic", CenturyGothic, Geneva, AppleGothic, sans-serif; 
   position: absolute;
   top: 50%;
-  left: 48%;
+  left: 47%;
+
 }
