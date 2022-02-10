@@ -136,8 +136,6 @@ if(show == "False"){
 
 
 
-
-
 // to show and hide download button
   function removeDisable(){
 
