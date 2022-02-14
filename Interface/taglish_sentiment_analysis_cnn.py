@@ -78,6 +78,7 @@ def predict_sentiment(input):
   clean_sequences  = tokenizer.texts_to_sequences(test)
   
   if(len(clean_sequences[0]) == 0):
+    print("Eto invalid:" )
     return 3,emoji
   
   else:        

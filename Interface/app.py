@@ -264,7 +264,7 @@ def uploadFiles():
         sentiment_prediction = []
         emoji = 0
         no_emoji = 0
-        
+        inv = 0
       
 
         for text in data['text']:
@@ -273,6 +273,8 @@ def uploadFiles():
             print("ETOOOOO : ",polarity)
             
             if(polarity[0]==3):
+                print("INVALIIIIIIDDDDDDDD")
+                inv += 1
                 sentiment_prediction.append("invalid")
             else:
                 sentiment_prediction.append(polarity[0])
@@ -315,6 +317,7 @@ def uploadFiles():
         pos = 0
         neg = 0
         neu = 0
+        
 
         for sentiment in sentiment_prediction:
             if(sentiment==0):
@@ -323,8 +326,9 @@ def uploadFiles():
                 pos+=1
             if(sentiment==1):
                 neu+=1
+            
                 
-        invalid_qty = len(data['text'])-(pos + neg)
+        invalid_qty = inv #len(data['text'])-(pos + neg)
         
         print('positive: ',pos,'  negative: ',neg,'  neutral: ',neu)
         print('with emoji: ',emoji,'   without emoji: ',no_emoji)
@@ -362,19 +366,32 @@ def uploadFiles():
     if(empty_file == 1):
         
         # GET THE DATA THAT WILL BE FED INTO THE CHART
-        data = (pos, neg, neu, invalid_qty)
-        show_sentiment_chart(data)
         
-        data = (emoji,no_emoji)
-        show_with_emoji_chart(data)
+        sentiment_chart = (pos == 0 and neg == 0 and neu == 0 and invalid_qty == 0)
+        if not(sentiment_chart):
+            data = (pos, neg, neu, invalid_qty)
+            show_sentiment_chart(data)
         
-        data = (positive_with_emoji,negative_with_emoji,neutral_with_emoji)
-        show_sentiment_with_emoji_chart(data)
         
-        data = (positive_no_emoji,neutral_no_emoji,negative_no_emoji)
-        show_sentiment_without_emoji_chart(data)
+        with_emoji_chart  = emoji == 0 and no_emoji == 0
+        if not (with_emoji_chart):
+            data = (emoji,no_emoji)
+            show_with_emoji_chart(data)
+            
+        sentiment_with_emoji_chart = (positive_with_emoji == 0 and negative_with_emoji == 0 and neutral_with_emoji == 0)
+        if not(sentiment_with_emoji_chart) :
+            data = (positive_with_emoji,negative_with_emoji,neutral_with_emoji)
+            show_sentiment_with_emoji_chart(data)
+        
+        sentiment_without_emoji_chart = (positive_no_emoji == 0 and neutral_no_emoji == 0 and negative_no_emoji == 0)
+        if not (sentiment_without_emoji_chart) :
+            data = (positive_no_emoji,neutral_no_emoji,negative_no_emoji)
+            show_sentiment_without_emoji_chart(data)
         
         time.sleep(2)
+        print("lassttt")
+        print(sentiment_with_emoji_chart)
+        
         
         return render_template("analyze.html", positive = 'Positive: ', positive_qty = pos, 
                                
@@ -396,7 +413,8 @@ def uploadFiles():
         
         negative_no_emoji_label = 'Negative w/o Emoji: ',negative_no_emoji = negative_no_emoji,
         
-        show = "True", invalid = "Invalid: ",invalid_qty = invalid_qty)
+        show = "True", invalid = "Invalid: ",invalid_qty = invalid_qty,sentiment_with_emoji_chart_html = sentiment_with_emoji_chart,
+        sentiment_chart_html = sentiment_chart, with_emoji_chart_html = with_emoji_chart, sentiment_without_emoji_chart_html = sentiment_without_emoji_chart  )
         
         
         
