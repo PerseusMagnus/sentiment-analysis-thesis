@@ -99,10 +99,39 @@ window.onclick = function(event) {
 
 let showDownload = window.localStorage.getItem('show');
 
+
 //document.getElementById("loading").style.display = "none";
 
 // get the eshow value to flag if downoad button will show up
 let show = document.getElementById('show-value').innerHTML
+
+let sentiment_with_emoji_chart = document.getElementById('sentiment-with-emoji-chart').innerHTML 
+let show_sentiment_chart = document.getElementById('show-sentiment-chart').innerHTML
+let show_with_emoji_chart = document.getElementById('show-with-emoji-chart').innerHTML
+let show_sentiment_without_emoji_chart = document.getElementById('show-sentiment-without-emoji-chart').innerHTML
+
+console.log(sentiment_with_emoji_chart)
+console.log(show_sentiment_chart)
+console.log(show_with_emoji_chart)
+console.log(show_sentiment_without_emoji_chart)
+
+if(sentiment_with_emoji_chart != "False"){
+    document.getElementById('sentiment-with-emoji-chart-html').style.display = "none";
+}
+
+if(show_sentiment_chart != "False"){
+    document.getElementById('sentiment-chart-html').style.display = "none";
+}
+
+if(show_with_emoji_chart != "False"){
+    document.getElementById('with-emoji-chart-html').style.display = "none";
+}
+
+if(show_sentiment_without_emoji_chart != "False"){
+    document.getElementById('sentiment-without-emoji-chart-html').style.display = "none";
+}
+
+
 //showDownload !='1'  &&  
 if(show == "False"){
     

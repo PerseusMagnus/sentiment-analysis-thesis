@@ -163,21 +163,25 @@
       </tr>
     </table>
 
+    
+
     <div id = "chart_image" >
       <table class="col-11">
         <tr>
-          <td> <img src="../static/images/sentiment_chart.png" id="chart_img">
-          <td> <img src="../static/images/with_emoji_chart.png" id="chart_img">
+          <td> <img src="../static/images/sentiment_chart.png" id="sentiment-chart-html">
+          <td> <img src="../static/images/with_emoji_chart.png" id="with-emoji-chart-html">
         </tr>
 
         <tr>
-          <td> <img src="../static/images/sentiment_with_emoji_chart.png" id="chart_img">
-          <td> <img src="../static/images/sentiment_without_emoji_chart.png" id="chart_img">          
+          <td> <img src="../static/images/sentiment_with_emoji_chart.png" id="sentiment-with-emoji-chart-html">
+          <td> <img src="../static/images/sentiment_without_emoji_chart.png" id="sentiment-without-emoji-chart-html">          
         </tr>
 
       </table>
     </div>
 
+
+    
    
   </div>
 
@@ -192,9 +196,14 @@
   
 
   <p id="show-value" hidden>{{show}}</p>
+
+  <p id="sentiment-with-emoji-chart" hidden>{{sentiment_with_emoji_chart_html}}</p>
+  <p id="show-sentiment-chart" hidden>{{sentiment_chart_html}}</p>
+  <p id="show-with-emoji-chart" hidden>{{with_emoji_chart_html}}</p>
+  <p id="show-sentiment-without-emoji-chart" hidden>{{sentiment_without_emoji_chart_html}}</p>
+
     
-  
- 
+
 
   <!-- FOOTER SECTION -->
   <footer>
