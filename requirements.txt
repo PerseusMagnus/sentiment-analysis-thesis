@@ -1,0 +1,9 @@
+keras
+numpy
+pandas
+scikit-learn
+nltk
+emoji
+tensorflow
+chart
+flask

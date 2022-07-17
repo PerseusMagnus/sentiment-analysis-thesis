@@ -7,6 +7,10 @@ import re
 import string
 from emoji import UNICODE_EMOJI
 
+# get directory path
+with open('directory.txt', 'r') as file:
+    directory = file.read()
+
 # search your emoji
 def is_emoji(s):
     return s in UNICODE_EMOJI['en']
@@ -38,8 +42,9 @@ def lowerStemmer(tokens):
 # GET AND SAVE THE STOPWORDS INTO LIST
 stoplist = ""
 
-with open('C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/stopwords/stopwords.txt',encoding="utf-8") as f:
-#with open('C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/stopwords/stopwords.txt',encoding="utf-8") as f:
+stopwords_path = directory +  "/stopwords/stopwords.txt"
+
+with open(stopwords_path,encoding="utf-8") as f:
   contents = f.read()
   stoplist = stoplist + contents
 stoplist = word_tokenize(stoplist)

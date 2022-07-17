@@ -15,16 +15,17 @@ import csv
 from io import StringIO
 import sys
 
+import os
+from os.path import join, dirname, realpath
+
 
 
 sys.stdin.reconfigure(encoding='utf-8')
 sys.stdout.reconfigure(encoding='utf-8')
 
-
+# initialize flask
 app = Flask(__name__)
 
-import os
-from os.path import join, dirname, realpath
 
 #global variable 
 input_with_polarity = []
@@ -33,11 +34,14 @@ input_with_polarity = []
 # enable debugging mode
 app.config["DEBUG"] = True
 
-# Upload folder for files
-#UPLOAD_FOLDER = 'C:/Users/johnr/Documents/Sentiment Analysis/sentiment-analysis-thesis/Interface/static/files/'
-UPLOAD_FOLDER = 'C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/files'
-app.config['UPLOAD_FOLDER'] =  UPLOAD_FOLDER
+# get directory path
+with open('directory.txt', 'r') as file:
+    directory = file.read()
+    
+print(directory)
 
+# Upload folder for files
+app.config['UPLOAD_FOLDER'] =  str(directory) + "/files"
 
 
 #homepage
@@ -121,7 +125,9 @@ def show_chart(sentiment, data, colors, explode, chart_name,title):
     plt.setp(autotexts, size = 12, weight ="bold")
     ax.set_title(title)
     
-    filename = 'C:/Users/AlphaQuadrant/Documents/thesis-development/sentiment-analysis-thesis/Interface/static/images/' + chart_name
+    # save path + filename
+    filename = directory + "/images" + chart_name
+    
     plt.savefig(filename) 
 
     # show plot
@@ -240,8 +246,6 @@ def uploadFiles():
         if uploaded_file.filename.rsplit('.', 1)[1].lower() != 'csv':
             return render_template("analyze.html", show = "False")
 
-        
-
         file_path = os.path.join(app.config['UPLOAD_FOLDER'], uploaded_file.filename)
         # set the file path
         uploaded_file.save(file_path)
@@ -270,10 +274,10 @@ def uploadFiles():
         for text in data['text']:
             polarity = model.predict_sentiment(text)
             
-            print("ETOOOOO : ",polarity)
+    
             
             if(polarity[0]==3):
-                print("INVALIIIIIIDDDDDDDD")
+                
                 inv += 1
                 sentiment_prediction.append("invalid")
             else:
